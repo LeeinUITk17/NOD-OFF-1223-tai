@@ -127,32 +127,35 @@ arrImage.map((item)=>{
 })
 console.log(arrImage)
 
-// var handlepara=(nonlike,nonlove,nondislike)=>{
-//     let a,b,c;
-//      arrImage.map((item)=>{
-//         switch (true) {
-//             case item.like===nonlike:
-//                 a++;
-//                 break;
-//             case item.love===nonlove:
-//                 b++;
-//                 break;
-//                 case item.dislike===nondislike:
-//                     c++;
-//                     break;
-//         }
-//      })
-//      console.log(`Ban co ${a} hinh anh co luoi like : ${nonlike}`);
-//      console.log(`Ban co ${b} hinh anh co luoi love : ${nonlove}`);
-//      console.log(`Ban co ${c} hinh anh co luoi dislike : ${dislike}`);
-// }
-// arrImage.handlepara(2,3,5);
-const handleCaculateImage = (like, love, disLike) => {
-    let like_list = arrImage.filter((item) => item.like == like);
-    let love_list = arrImage.filter((item) => item.love == love);
-    let disLike_list = arrImage.filter((item) => item.disLike == disLike);
-    let result = `Bạn có ${like_list.length} hình ảnh có lượt like là : ${like} \nBạn có ${love_list.length} hình ảnh có lượt love là : ${love} \nBạn có ${disLike_list.length} hình ảnh có lượt disLike là : ${disLike}`;
-    console.log(result);
-  };
-  
-  handleCaculateImage(100, 50, 2);
+var handlepara=(nonlike,nonlove,nondislike)=>{
+  let a =0 ,b= 0,c=0;
+   arrImage.map((item)=>{
+      switch (true) {
+          case item.like===nonlike:
+              a++;
+              break;
+          case item.love===nonlove:
+              b++;
+              break;
+              case item.dislike===nondislike:
+                  c++;
+                  break;
+                  default:
+                    break;
+      }
+   })
+   console.log(`Ban co ${a} hinh anh co luoi like : ${nonlike}`);
+   console.log(`Ban co ${b} hinh anh co luoi love : ${nonlove}`);
+   console.log(`Ban co ${c} hinh anh co luoi dislike : ${nondislike}`);
+}
+handlepara(2,3,5);
+
+const handleimage=(nonlike,nonlove,nondislike)=>{
+  let listlike=arrImage.filter((item)=>item.like===nonlike);
+  let listlove=arrImage.filter((item)=> item.love===nonlove);
+  let listdislike=arrImage.filter((item)=>item.dislike===nondislike);
+  console.log((`\n\tBan co ${listlike.length} hinh anh co luoi like : ${nonlike}
+ \t Ban co ${listlove.length} hinh anh co luoi love : ${nonlove}
+  \tBan co ${listdislike.length} hinh anh co luoi dislike : ${nondislike}`));
+}
+handleimage(12,3,43);
