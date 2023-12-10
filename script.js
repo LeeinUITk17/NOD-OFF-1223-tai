@@ -156,6 +156,25 @@ const handleimage=(nonlike,nonlove,nondislike)=>{
   let listdislike=arrImage.filter((item)=>item.dislike===nondislike);
   console.log((`\n\tBan co ${listlike.length} hinh anh co luoi like : ${nonlike}
  \t Ban co ${listlove.length} hinh anh co luoi love : ${nonlove}
-  \tBan co ${listdislike.length} hinh anh co luoi dislike : ${nondislike}`));
+ \tBan co ${listdislike.length} hinh anh co luoi dislike : ${nondislike}`));
 }
 handleimage(12,3,43);
+// cau 3 viet ham in so giay da troi qua
+var printsecond=()=>{
+    let seconds=0;
+    const intervalid=setInterval(function(){
+      seconds++;
+      switch (true) {
+        case seconds===3:
+          break;
+        case seconds===5:
+          console.log(`giay thu ${seconds}`);
+       clearInterval(intervalid);
+       break;
+        default:
+          console.log(`giay thu ${seconds}`);
+          break;
+      }
+    },1000);
+}
+printsecond();
