@@ -180,56 +180,62 @@ var printsecond=()=>{
 printsecond();
 //cau 4
 //1 doc du lieu tu file   input.txt
-const fs = require('fs').promises;
-const content = 'something idiotic, i think, when feeling misty...(-.-!)';
-const filename = 'input.txt';
+// const fs = require('fs').promises;
+// const content = 'something idiotic, i think, when feeling misty...(-.-!)';
+// const filename = 'input.txt';
 
-async function writeFileAsync() {
-  try {
-    await fs.writeFile(filename, content);
-    console.log(`File ${filename} created and content written successfully.`);
-    const data = await fs.readFile(filename, 'utf-8');
-    console.log(`Content of ${filename}:\n${data}`);
+// async function writeFileAsync() {
+//   try {
+//     await fs.writeFile(filename, content);
+//     console.log(`File ${filename} created and content written successfully.`);
+//     const data = await fs.readFile(filename, 'utf-8');
+//     console.log(`Content of ${filename}:\n${data}`);
 
-    // Call touppercase function here, after the file has been written and read
-    await touppercase();
-  } catch (err) {
-    if (err.code === 'EEXIST') {
-      console.log(`File ${filename} already exists. Content not written.`);
-    } else {
-      console.error('Error writing to or reading from the file:', err);
-    }
-  }
-}
+//     // Call touppercase function here, after the file has been written and read
+//     await touppercase();
+//   } catch (err) {
+//     if (err.code === 'EEXIST') {
+//       console.log(`File ${filename} already exists. Content not written.`);
+//     } else {
+//       console.error('Error writing to or reading from the file:', err);
+//     }
+//   }
+// }
 
-async function touppercase() {
-  try {
-    const data = await fs.readFile(filename, 'utf-8');
-    const uppercasecontent = data.toUpperCase();
-    await fs.writeFile(filename, uppercasecontent);
-    console.log(`${filename} content converted to uppercase successfully.(+_+")`);
+// async function touppercase() {
+//   try {
+//     const data = await fs.readFile(filename, 'utf-8');
+//     const uppercasecontent = data.toUpperCase();
+//     await fs.writeFile(filename, uppercasecontent);
+//     console.log(`${filename} content converted to uppercase successfully.(+_+")`);
     
-    const updatedData = await fs.readFile(filename, 'utf-8');
-    console.log(`Updated content of ${filename}:\n${updatedData}`);
-     await insertNewfile(updatedData);
-  } catch (err) {
-    console.error('Error converting content to uppercase', err);
-  }
-}
-const newFilename='output.txt'
-// Call the writeFileAsync function to write and read the file, then convert to uppercase
-writeFileAsync();
-async function insertNewfile(data) {
-  try {
-    await fs.writeFile(newFilename, data);
-    console.log(`Content inserted into ${newFilename} successfully.`);
-    const newdata=await fs.readFile(newFilename,'utf-8');
-    console.log(`content of ${newFilename}:\n${newdata}`);
-  } catch (err) {
-    console.error('Error inserting content into the new file:', err);
-  }
-}
+//     const updatedData = await fs.readFile(filename, 'utf-8');
+//     console.log(`Updated content of ${filename}:\n${updatedData}`);
+//      await insertNewfile(updatedData);
+//   } catch (err) {
+//     console.error('Error converting content to uppercase', err);
+//   }
+// }
+// const newFilename='output.txt'
+// // Call the writeFileAsync function to write and read the file, then convert to uppercase
+// writeFileAsync();
+// async function insertNewfile(data) {
+//   try {
+//     await fs.writeFile(newFilename, data);
+//     console.log(`Content inserted into ${newFilename} successfully.`);
+//     const newdata=await fs.readFile(newFilename,'utf-8');
+//     console.log(`content of ${newFilename}:\n${newdata}`);
+//   } catch (err) {
+//     console.error('Error inserting content into the new file:', err);
+//   }
+// }
 
 
 // use async await promise
 
+const fs=require('fs').promises;
+const content = 'something idiotic, i think, when feeling misty...(-.-!)';
+const filename = 'input.txt';
+const newFilename = 'output.txt';
+
+const writeFile=(filename,content,(err))
