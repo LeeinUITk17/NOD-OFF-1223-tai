@@ -180,6 +180,7 @@ var printsecond=()=>{
     },1000);
 }
 printsecond();
+
 //cau 4
 //1 doc du lieu tu file   input.txt
 // const fs = require('fs').promises;
@@ -234,6 +235,7 @@ printsecond();
 
 
 // use async await promise
+//cau4- 
 const fs = require('fs').promises;
 const filename = 'input.txt';
 const newFilename = 'output.txt';
