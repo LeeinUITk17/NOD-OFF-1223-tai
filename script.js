@@ -1,3 +1,5 @@
+const { error } = require('console');
+
 let arrImage = [
     {
       "id": 1,
@@ -78,87 +80,87 @@ let arrImage = [
 // var index=arrImage.length-1
 // console.log(index)
 //console.log(arrImage[arrImage.length].name)
-console.log(arrImage[arrImage.length-1].name)
-for(let i=0;i<arrImage.length;i++){
-    if(arrImage[i].like!=100){
-     console.log(arrImage[i]);
-    }
-}
-let arr=[];
+// console.log(arrImage[arrImage.length-1].name)
+// for(let i=0;i<arrImage.length;i++){
+//     if(arrImage[i].like!=100){
+//      console.log(arrImage[i]);
+//     }
+// }
+// let arr=[];
+// // arrImage.map((item)=>{
+// //     if(item.like!=100){
+// //         newarr.push(item);
+// //     }
+// // })
+// // newarr.map((item)=>{
+// //     console.log(item)
+// // })
+
+//     const newarr=arrImage.filter((item)=>item.like!=100);
+   
+// console.log(arrImage.sort((a,b)=>b.dislike-a.dislike));
 // arrImage.map((item)=>{
-//     if(item.like!=100){
-//         newarr.push(item);
+//     if(item.like>100 && item.love>100){
+//         arr.push(item);
 //     }
 // })
-// newarr.map((item)=>{
-//     console.log(item)
+// //console.log(arr.sort((a,b)=>b))
+// console.log(arr.sort((a,b)=>a.id-b.id));
+
+// arrImage.map((item)=>{
+//     item.type='non'
 // })
+// arrImage.map((item)=>{
+//     var para=item.like;
+//     switch (true) {
+//         case para>300 :
+//             item.type='A';
+//             break;
+//         case para>=200 && para<=300:
+//             item.type='B';
+//             break;
+//         case para>=100 && para<=200:
+//             item.type='C';
+//             break;
+//             case para<=100:
+//             item.type='D';
+//             break;
+//     }
+// })
+// console.log(arrImage)
+// //cau 2.5
+// var handlepara=(nonlike,nonlove,nondislike)=>{
+//   let a =0 ,b= 0,c=0;
+//    arrImage.map((item)=>{
+//       switch (true) {
+//           case item.like===nonlike:
+//               a++;
+//               break;
+//           case item.love===nonlove:
+//               b++;
+//               break;
+//               case item.dislike===nondislike:
+//                   c++;
+//                   break;
+//                   default:
+//                     break;
+//       }
+//    })
+//    console.log(`Ban co ${a} hinh anh co luoi like : ${nonlike}`);
+//    console.log(`Ban co ${b} hinh anh co luoi love : ${nonlove}`);
+//    console.log(`Ban co ${c} hinh anh co luoi dislike : ${nondislike}`);
+// }
+// handlepara(2,3,5);
 
-    const newarr=arrImage.filter((item)=>item.like!=100);
-   
-console.log(arrImage.sort((a,b)=>b.dislike-a.dislike));
-arrImage.map((item)=>{
-    if(item.like>100 && item.love>100){
-        arr.push(item);
-    }
-})
-//console.log(arr.sort((a,b)=>b))
-console.log(arr.sort((a,b)=>a.id-b.id));
-
-arrImage.map((item)=>{
-    item.type='non'
-})
-arrImage.map((item)=>{
-    var para=item.like;
-    switch (true) {
-        case para>300 :
-            item.type='A';
-            break;
-        case para>=200 && para<=300:
-            item.type='B';
-            break;
-        case para>=100 && para<=200:
-            item.type='C';
-            break;
-            case para<=100:
-            item.type='D';
-            break;
-    }
-})
-console.log(arrImage)
-//cau 2.5
-var handlepara=(nonlike,nonlove,nondislike)=>{
-  let a =0 ,b= 0,c=0;
-   arrImage.map((item)=>{
-      switch (true) {
-          case item.like===nonlike:
-              a++;
-              break;
-          case item.love===nonlove:
-              b++;
-              break;
-              case item.dislike===nondislike:
-                  c++;
-                  break;
-                  default:
-                    break;
-      }
-   })
-   console.log(`Ban co ${a} hinh anh co luoi like : ${nonlike}`);
-   console.log(`Ban co ${b} hinh anh co luoi love : ${nonlove}`);
-   console.log(`Ban co ${c} hinh anh co luoi dislike : ${nondislike}`);
-}
-handlepara(2,3,5);
-
-const handleimage=(nonlike,nonlove,nondislike)=>{
-  let listlike=arrImage.filter((item)=>item.like===nonlike);
-  let listlove=arrImage.filter((item)=> item.love===nonlove);
-  let listdislike=arrImage.filter((item)=>item.dislike===nondislike);
-  console.log((`\n\tBan co ${listlike.length} hinh anh co luoi like : ${nonlike}
- \t Ban co ${listlove.length} hinh anh co luoi love : ${nonlove}
- \tBan co ${listdislike.length} hinh anh co luoi dislike : ${nondislike}`));
-}
-handleimage(12,3,43);
+// const handleimage=(nonlike,nonlove,nondislike)=>{
+//   let listlike=arrImage.filter((item)=>item.like===nonlike);
+//   let listlove=arrImage.filter((item)=> item.love===nonlove);
+//   let listdislike=arrImage.filter((item)=>item.dislike===nondislike);
+//   console.log((`\n\tBan co ${listlike.length} hinh anh co luoi like : ${nonlike}
+//  \t Ban co ${listlove.length} hinh anh co luoi love : ${nonlove}
+//  \tBan co ${listdislike.length} hinh anh co luoi dislike : ${nondislike}`));
+// }
+// handleimage(12,3,43);
 // cau 3 viet ham in so giay da troi qua
 var printsecond=()=>{
     let seconds=0;
@@ -178,6 +180,7 @@ var printsecond=()=>{
     },1000);
 }
 printsecond();
+
 //cau 4
 //1 doc du lieu tu file   input.txt
 // const fs = require('fs').promises;
@@ -232,6 +235,26 @@ printsecond();
 
 
 // use async await promise
+//cau4- 
+const fs = require('fs').promises;
+const filename = 'input.txt';
+const newFilename = 'output.txt';
+
+fs.readFile(filename, 'utf-8')
+  .then(data => {
+    console.log(data);
+    const nondata = data.toUpperCase();
+    return fs.writeFile(newFilename, nondata);
+  })
+  .then(() => {
+    return fs.readFile(newFilename, 'utf-8');
+  })
+  .then(nondata => {
+    console.log(nondata);
+  })
+  .catch(error => {
+    console.error(error);
+  });
 
 const fs=require('fs').promises;
 const content = 'something idiotic, i think, when feeling misty...(-.-!)';
