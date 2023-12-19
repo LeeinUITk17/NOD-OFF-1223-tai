@@ -22,7 +22,7 @@ app.use(function(req, res, next) {
 
 
 mongoose.connect('mongodb+srv://leeinearth817:cnttvietnhatk17@cluster0.pjk9ees.mongodb.net/project_news')
-//var app = express();
+//var app = express();    
 
 var db = mongoose.connection;
 db.on('error', function (error) {
