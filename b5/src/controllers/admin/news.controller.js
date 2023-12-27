@@ -35,11 +35,13 @@ class NewsController {
     const { id } = req.params;
     const { name, status, description } = req.body;
     const data = await getItemAndUpdate(id, { name, status, description });
+    // req.flash('success','updated successfully',false);
     res.redirect("/admin/news");
   };
   getItemAndDelete = async (req, res, next) => {
     const { id } = req.params;
     const data = await getItemAndDelete(id);
+    // req.flash('success','deleted successfully',false);
     res.redirect("/admin/news");
   };
 }

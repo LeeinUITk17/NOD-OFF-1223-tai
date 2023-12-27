@@ -3,7 +3,6 @@ const express = require("express");
 const router = express.Router();
 const newController = require("../../../controllers/admin/news.controller");
 const { body, validationResult } = require("express-validator");
-
 const validateRequest = validations => {
   return async (req, res, next) => {
     for (let validation of validations) {
@@ -15,8 +14,11 @@ const validateRequest = validations => {
     if (errors.isEmpty()) {
       return next();
     }
+    const alert = errors.array().map(error => ({
+      ...error,
+      type: 'danger',
+    }));
 
-    const alert = errors.array();
     res.render('admin/news/form', { data: {}, alert });
   };
 };
@@ -55,6 +57,9 @@ router.post(
   ]),
   newController.getItemAndUpdate
 );
-router.get("/delete/:id", newController.getItemAndDelete);
+// router.get("/delete/:id",newController.getItemAndDelete ,(req, res, next) => {
+//   req.flash('success', 'Deleted successfully', false);
+// });
+router.get("/delete/:id",  newController.getItemAndDelete);
 
 module.exports = router;
