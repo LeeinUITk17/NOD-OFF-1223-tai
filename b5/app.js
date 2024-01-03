@@ -28,7 +28,11 @@ app.use(session({
 }));
 
 
-app.use(flash(app));
+app.use(
+  flash(app, {
+    viewName: "./admin/elements/flash",
+  })
+);
 
 app.use("/", require("./src/routes"));
 
