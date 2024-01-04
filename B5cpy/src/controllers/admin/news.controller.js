@@ -13,8 +13,9 @@ var router = express.Router();
 
 class NewsController {
   getAll = async (req, res, next) => {
+    const statusCounts = await getStatusCounts();
     const data = await getItems();
-    res.render("admin/news", { data });
+    res.render("admin/news", { data,statusfilter: this.getStatusFilter(statusCounts)});
   };
 
   getForm = async (req, res, next) => {
@@ -59,9 +60,9 @@ class NewsController {
   
   updateStatus = async (req, res, next) => {
     try {
-      const { id } = req.params;
-      const currentItem = await getItemById(id);
-      const newStatus = currentItem.status === 'active' ? 'inactive' : 'active';
+      const { id , status} = req.params;
+      //const currentItem = await getItemById(id);
+      const newStatus = status === 'active' ? 'inactive' : 'active';
       await updateItem(id, { status: newStatus });
       res.status(200).json({ message: 'Successfully updated status', id, status: newStatus });
     } catch (error) {
@@ -69,6 +70,8 @@ class NewsController {
       res.status(500).json({ error: 'Internal Server Error' });
     }
   };
+
+
   statusCount = async (req, res, next) => {
     try {
       const items = await getItems();

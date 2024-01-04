@@ -7,9 +7,14 @@
           <button type="button" class="btn btn-block btn-primary">Add new</button>
         </a>
       </div>
+      <div class="card-tools">
+        <a href="news/">
+          <button type="button" class="btn btn-block btn-primary">Submit checked</button>
+        </a>
+      </div>
     </div>
     <div class="card-header">
-      <h3 class="card-title">Projects</h3>
+      
       <div class="status-list col-sm-6 pl0">
         <% statusfilter.forEach((item) => { %>
           <a class="<%= item.class %>" href="<%= item.link %>">
@@ -56,7 +61,7 @@
               <td><%= item.name %></td>
               <td><%= item.description %></td>
               <td class="project-state" id="status-<%= item.id %>">
-                <a href="javascript:void(0);" onclick="handleUpdateStatus('<%= item.id %>', '<%= item.status %>')">
+                <a href="/changeStatus/<%item.id%>/<%item.status%>" onclick="handleUpdateStatus('<%= item.id %>', '<%= item.status %>')">
                   <span class="badge <%= item.status === 'active' ? 'badge-success' : 'badge-danger' %>"><%= item.status %></span>
                 </a>
               </td>

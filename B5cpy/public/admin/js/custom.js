@@ -41,15 +41,15 @@ const handleDelete = (link) => {
 const handleUpdateStatus = (id, status) => {
   $.ajax({
     type: "GET",
-    url: `/admin/news/changeStatus/${id}`,
+    url: `/admin/news/changeStatus/${id}/${status}`,
     dataType: "json",
     success: function (response) {
-      const newStatusClass = response.status === 'active' ? 'badge-success' : 'badge-danger';
+      const newStatusClass = status === 'active' ? 'badge-success' : 'badge-danger';
 
       // Update the status text and class
       $(`#status-${id}`).html(`
-        <a href="javascript:void(0);" onclick="handleUpdateStatus('${id}', '${response.status}')">
-          <span class="badge ${newStatusClass}">${response.status}</span>
+        <a href="javascript:void(0);" onclick="handleUpdateStatus('${id}', '${status}')">
+          <span class="badge ${newStatusClass}">${status}</span>
         </a>
       `);
     },
@@ -58,4 +58,5 @@ const handleUpdateStatus = (id, status) => {
       alert('Error updating status. Please try again.');
     }
   });
+  
 };
