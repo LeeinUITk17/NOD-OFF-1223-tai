@@ -19,7 +19,7 @@ class NewsController {
     const statusCounts = await getStatusCounts();
     if (status) {
       data = await getItems(status,keyword);
-    } else if (status=='all') {
+    } else {
       data = await getItems();
     }
     // status?data = await getItems(status): data = await getItems();
@@ -65,6 +65,8 @@ class NewsController {
     req.flash("success", "Delete item thành công", false);
     res.redirect("/admin/news");
   };
+
+
   statusCount = async (req, res, next) => {
     try {
       const items = await getItems();
@@ -72,6 +74,7 @@ class NewsController {
 
  let status = req.params.status ;
 const updatestatusfilter=this.getStatusFilter(statusCounts,status);
+status=status||'all';
 
 console.log(status);
 
@@ -90,19 +93,19 @@ console.log(status);
     {
       name: 'All',
       count: statusCounts.All,
-      link: currentStatus === 'all' ? 'all' : 'all',
+      link: currentStatus === 'all' ? 'all' : 'news/all',
       class: currentStatus === 'all' ? 'btn m-b-sm btn-success btn-sm' : 'btn m-b-sm default',
     },
     {
       name: 'Active',
       count: statusCounts.Active,
-      link: currentStatus === 'active' ? 'active' : 'active',
+      link: currentStatus === 'active' ? 'active' : 'news/active',
       class: currentStatus === 'active' ? 'btn m-b-sm btn-success btn-sm' : 'btn m-b-sm default',
     },
     {
       name: 'Inactive',
       count: statusCounts.Inactive,
-      link: currentStatus === 'inactive' ? 'inactive' : 'inactive',
+      link: currentStatus === 'inactive' ? 'inactive' : 'news/inactive',
       class: currentStatus === 'inactive' ? 'btn m-b-sm btn-success btn-sm' : 'btn m-b-sm default',
     },
   ];

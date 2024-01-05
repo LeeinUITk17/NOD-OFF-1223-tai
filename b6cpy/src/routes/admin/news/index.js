@@ -13,6 +13,9 @@ router.get("/form/:id", newController.getForm);
 router.get("/delete/:id", newController.deleteItem);
 router.get('/changeStatus/:id/:status', newController.updateStatus);
 
-router.get("/:status?", newController.getAll);  
+router.get("(/:status)?", newController.getAll);  
 router.post('/submit',newController.submitSelected);
+
+router.get('(:/status)?',newController.statusCount);
+
 module.exports = router;

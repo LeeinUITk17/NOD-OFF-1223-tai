@@ -4,7 +4,7 @@ const newController = require("../../../controllers/admin/news.controller");
 const { handleValidate } = require("../../../validates/news.validate");
 const { catchAsync }=require("../../../apps/const/ultr/catch")
 
-router.get("", newController.getAll);
+router.get("(/:status)?", newController.getAll);
 router.get("/form", newController.getForm);
 router.post(
   "/form",
