@@ -3,6 +3,7 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 
+const bodyParser=require('body-parser');
 const flash = require("express-flash-notification");
 const session = require("express-session");
 var expressLayouts = require("express-ejs-layouts");
@@ -21,6 +22,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+
+app.use(bodyParser.json());
 
 app.use(
   session({

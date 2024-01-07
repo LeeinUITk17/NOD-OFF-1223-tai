@@ -7,11 +7,19 @@ const {
   getStatusCounts,
 } = require("../../services/news.services");
 const { body, validationResult } = require("express-validator");
-
+const mainName='news';
+const linkprefix=`/admin/${mainName}/`;
 var express = require("express");
 var router = express.Router();
 
+// const setFlashMessage = (req, type, message) => {
+//   req.flash(type, message, false);
+// };
+
 class NewsController {
+
+  
+
   getAll = async (req, res, next) => {
     let { status } = req.params;
    let keyword=req.query.keywords;
@@ -23,7 +31,7 @@ class NewsController {
       data = await getItems();
     }
     // status?data = await getItems(status): data = await getItems();
-    res.render("admin/news", { data, statusfilter: this.getStatusFilter(statusCounts, status),keyword });
+    res.render("admin/news", { data, statusfilter: this.getStatusFilter(statusCounts, status),keyword ,linkprefix});
   };
 
   getForm = async (req, res, next) => {
@@ -46,8 +54,8 @@ class NewsController {
       listError.map((error) => messages.push(error.msg));
       req.flash("danger", messages, false);
       return id
-        ? res.redirect("/admin/news/form/" + id)
-        : res.redirect("/admin/news/form/");
+        ? res.redirect(`${linkprefix}form/` + id)
+        : res.redirect(`${linkprefix}form/`);
     }
     if (id) {
       await updateItem(id, req.body);
@@ -56,14 +64,14 @@ class NewsController {
       await addItem(req.body);
       req.flash("success", "Add item thành công", false);
     }
-    res.redirect("/admin/news");
+    res.redirect(`${linkprefix}`);
   };
 
   deleteItem = async (req, res, next) => {
     let { id } = req.params;
     await deleteItem(id);
     req.flash("success", "Delete item thành công", false);
-    res.redirect("/admin/news");
+    res.redirect(`${linkprefix}`);
   };
 
 
@@ -93,19 +101,19 @@ console.log(status);
     {
       name: 'All',
       count: statusCounts.All,
-      link: currentStatus === 'all' ? 'all' : 'news/all',
+      link: currentStatus === 'all' ? 'all' : `${linkprefix}all`,
       class: currentStatus === 'all' ? 'btn m-b-sm btn-success btn-sm' : 'btn m-b-sm default',
     },
     {
       name: 'Active',
       count: statusCounts.Active,
-      link: currentStatus === 'active' ? 'active' : 'news/active',
+      link: currentStatus === 'active' ? 'active' : `${linkprefix}active`,
       class: currentStatus === 'active' ? 'btn m-b-sm btn-success btn-sm' : 'btn m-b-sm default',
     },
     {
       name: 'Inactive',
       count: statusCounts.Inactive,
-      link: currentStatus === 'inactive' ? 'inactive' : 'news/inactive',
+      link: currentStatus === 'inactive' ? 'inactive' : `${linkprefix}inactive`,
       class: currentStatus === 'inactive' ? 'btn m-b-sm btn-success btn-sm' : 'btn m-b-sm default',
     },
   ];
@@ -134,15 +142,46 @@ console.log(status);
       console.error("Error during status update:", error);
       res.status(500).json({ error: 'Internal Server Error' });
     }
+    
 };
 
-submitSelected=async (req,res,next)=>{
-           
-  const selected = req.body.selectedItems;
-  console.log(selected);
-  res.redirect('admin/news');
-}
+statusTool = async (req, res, next) => {
+  const { action, selectedItems } = req.body;
+  let newStatus;
+  
+  switch (action) {
+    case 'set_to_active':
+      newStatus = 'active';
+      break;
+    case 'set_to_inactive':
+      newStatus = 'inactive';
+      break;
+    case 'set_to_delete':
+      for (const itemId of selectedItems) {
+        await deleteItem(itemId);
+      }
+      // setFlashMessage(req, 'success', 'Delete item thành công');
+      res.json({ success: true });
+      return;
+    default:
+      return res.status(400).json({ error: 'Invalid action' });
+  }
+
+  if (newStatus && (newStatus === 'active' || newStatus === 'inactive')) {
+    for (const itemId of selectedItems) {
+      await updateItem(itemId, { status: newStatus });
+    }
+    // setFlashMessage(req, 'success', 'Update item thành công');
+    res.json({ success: true });
+    return;
+  }
+
+  // res.redirect(`${linkprefix}`);
+
+};
+ 
 
 }
+
 
 module.exports = new NewsController();
