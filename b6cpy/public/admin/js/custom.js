@@ -83,3 +83,30 @@ jQuery(document).ready(function($)  {
     }
   });
 });
+
+Dropzone.options.myDropzone = {
+  autoProcessQueue: false,
+  uploadMultiple: true,
+  parallelUploads: 5,
+  maxFiles: 5,
+
+  init() {
+    const myDropzone = this;
+
+    document.querySelector(".start").addEventListener("click", () => {
+      myDropzone.processQueue();
+    });
+
+    document.querySelector(".cancel").addEventListener("click", () => {
+      myDropzone.removeAllFiles(true);
+    });
+  }
+};
+
+const startUpload = () => {
+  Dropzone.forElement("#myDropzone").processQueue();
+};
+
+const cancelUpload = () => {
+  Dropzone.forElement("#myDropzone").removeAllFiles(true);
+};

@@ -179,7 +179,15 @@ statusTool = async (req, res, next) => {
   // res.redirect(`${linkprefix}`);
 
 };
- 
+uploadFile = (req, res, next) => {
+  upload.single('file')(req, res, (err) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    const filePath = req.file.path;
+    res.json({ success: true, filePath });
+  });
+};
 
 }
 

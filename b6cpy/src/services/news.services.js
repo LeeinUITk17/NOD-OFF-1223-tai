@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 const newsModel = require("../model/news.model");
+const mainName='news';
+const linkprefix=`/admin/${mainName}/`;
 const addItem = async (body) => {
   await newsModel.create(body);
 };
