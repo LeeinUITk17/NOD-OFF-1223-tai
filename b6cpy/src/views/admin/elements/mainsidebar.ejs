@@ -6,8 +6,15 @@
                                 { name: ' News Dashboard', icon: 'ion-clipboard', link: `admin/news`},
                               ],
         name: 'Manage News', icon: 'fas fa-list', link: `admin/news`},
-    ];
 
+        {parent: true, child: [
+                               
+                              ],
+        name: 'catagory', icon: 'fas fa-list', link: `admin/news`},
+    ];y
+    
+
+    
     let xhtmlMenu = '';
     arrMenu.forEach(menu => {
       if(menu.parent == false){
@@ -93,3 +100,5 @@
     </div>
     <!-- /.sidebar -->
   </aside>
+ 
+  

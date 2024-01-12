@@ -21,5 +21,5 @@ const newSchema = new Schema(
     collection: COLLECTION_NAME,
   }
 );
-
+// newSchema.pre("save",function)
 module.exports = mongoose.model(COLLECTION_NAME, newSchema);

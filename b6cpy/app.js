@@ -16,7 +16,7 @@ connect();
 app.set("views", path.join(__dirname, "src/views"));
 app.set("view engine", "ejs");
 app.use(expressLayouts);
-app.set("layout", "admin");
+// app.set("layout", "admin");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
