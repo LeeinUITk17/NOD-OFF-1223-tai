@@ -1,5 +1,3 @@
-const multer = require('multer');
-const path=require('path');
 const {
   addItem,
   getItems,
@@ -7,11 +5,11 @@ const {
   getItemById,
   updateItem,
   getStatusCounts,
-} = require("../../services/news.services");
-const { upload } = require("../../helper/news.helper");
+} = require("../../services/category.service");
 const { body, validationResult } = require("express-validator");
-const mainName = 'news';
-const linkprefix = `/admin/${mainName}/`;
+const mainName='category';
+const linkprefix=`/admin/${mainName}/`;
+const linkrender=`admin/${mainName}/`;
 var express = require("express");
 var router = express.Router();
 
@@ -34,8 +32,7 @@ class NewsController {
       data = await getItems();
     }
     // status?data = await getItems(status): data = await getItems();
-    res.render("admin/news", { data, statusfilter: this.getStatusFilter(statusCounts, status), keyword, linkprefix });
-
+    res.render(`${linkrender}`, { data, statusfilter: this.getStatusFilter(statusCounts, status),keyword ,linkprefix});
   };
 
   getForm = async (req, res, next) => {
@@ -183,15 +180,12 @@ statusTool = async (req, res, next) => {
   // res.redirect(`${linkprefix}`);
 
 };
-
-uploadFile = async (req, res, next) => {
+uploadFile = (req, res, next) => {
   upload.single('file')(req, res, (err) => {
-    if (err instanceof multer.MulterError) {
-      return res.status(500).json({ error: `Multer Error: ${err.message}` });
-    } else if (err) {
-      return res.status(500).json({ error: `Unknown error occurred: ${err.message}` });
+    if (err) {
+      return res.status(500).json({ error: err.message });
     }
-    const filePath = path.join('../../../public/uploads', req.file.filename); 
+    const filePath = req.file.path;
     res.json({ success: true, filePath });
   });
 };

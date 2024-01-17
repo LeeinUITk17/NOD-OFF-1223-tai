@@ -1,0 +1,86 @@
+<%- locals.flash %>
+<section class="content">
+          <div class="row">
+               <div class="col-md-6">
+                    <form method="POST" action="/admin/category/form">
+                         <div class="card card-primary">
+                              <grammarly-extension data-grammarly-shadow-root="true" class="dnXmp" style="position: absolute; top: 0px; left: 0px; pointer-events: none;"></grammarly-extension>
+                              <grammarly-extension data-grammarly-shadow-root="true" class="dnXmp" style="position: absolute; top: 0px; left: 0px; pointer-events: none;"></grammarly-extension>
+                              <div class="card-header">
+                                   <h3 class="card-title">General</h3>
+                                   <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                        <i class="fas fa-minus"></i>
+                                        </button>
+                                   </div>
+                              </div>
+                              <div class="card-body">
+                                   <%
+                                        let item = {}
+                                        if (data) {
+                                             item = data
+                                        }
+                                   %>
+                                   <div class="form-group">
+                                        <label for="name">Name</label>
+                                        <input name="name" type="text" id="name" class="form-control" value="<%= item.name %>">
+                                        <input style="display: none" name="id" type="text" id="id" class="form-control" value="<%= item._id %>">
+                                   </div>
+                                   <div class="form-group">
+                                        <label for="status">Status</label>
+                                        <select name = 'status' id="status" class="form-control custom-select">
+                                             <option selected disabled="">Select one</option>
+                                             <option value="active" <%= (item.status == "active") ? 'selected="selected"' : '' %> >Active</option>
+                                             <option value="inactive" value="inactive" <%= (item.status == "inactive") ? 'selected="selected"' : '' %>>Inactive</option>
+                                        </select>
+                                   </div>
+                                   <div class="form-group">
+                                        <label for="discription">Discription</label>
+                                        <input name="discription" placeholder="discription...." type="text" id="discription" class="form-control" value="<%= item.discription %>">
+                                   </div>
+                                   <button type="submit" class="btn btn-primary float-right">Submit</button>
+                              </div>
+                         </div>
+                    </form>
+               </div>
+          </div>
+          <div class="row">
+               <div class="col-12">
+               <a href="/admin/category" class="btn btn-secondary">Cancel</a>
+               </div>
+          </div>
+
+
+          <form action="/admin/category/upload" enctype="multipart/form-data" method="post" class="dropzone" id="myDropzone">
+               <div class="card card-default">
+                 <div class="card-header"></div>
+                 <div class="card-body">
+                   <div id="actions" class="row">
+                     <div class="col-lg-6">
+                       <div class="btn-group w-100">
+                         <button type="button" class="btn btn-primary col start" onclick="startUpload()">
+                           <i class="fas fa-upload"></i>
+                           <span>Start upload</span>
+                         </button>
+                         <button type="button" class="btn btn-warning col cancel" onclick="cancelUpload()">
+                           <i class="fas fa-times-circle"></i>
+                           <span>Cancel upload</span>
+                         </button>
+                       </div>
+                     </div>
+                     <div class="col-lg-6 d-flex align-items-center">
+                       <div class="fileupload-process w-100">
+                         <div id="total-progress" class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                           <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress=""></div>
+                         </div>
+                       </div>
+                     </div>
+                   </div>
+                   <div class="table table-striped files" id="previews"></div>
+                 </div>
+               </div>
+             </form>
+             
+             
+             
+</section>

@@ -10,6 +10,6 @@ router.use((req,res,next)=>{
 
 router.use('/' , require('./dashboard'));
 router.use('/news' , require('./news'));
-
+router.use('/category',require('./category'));
 
 module.exports = router;
