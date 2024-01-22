@@ -38,10 +38,10 @@ class NewsController {
   getForm = async (req, res, next) => {
     let { id } = req.params;
     if (id == "") {
-      res.render("admin/news/form");
+      res.render("admin/category/form");
     } else {
       let data = await getItemById(id);
-      res.render("admin/news/form", { data });
+      res.render("admin/category/form", { data });
     }
   };
 
@@ -179,15 +179,6 @@ statusTool = async (req, res, next) => {
 
   // res.redirect(`${linkprefix}`);
 
-};
-uploadFile = (req, res, next) => {
-  upload.single('file')(req, res, (err) => {
-    if (err) {
-      return res.status(500).json({ error: err.message });
-    }
-    const filePath = req.file.path;
-    res.json({ success: true, filePath });
-  });
 };
 
 }

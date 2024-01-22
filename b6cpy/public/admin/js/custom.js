@@ -39,7 +39,30 @@ const handleUpdateStatus = (id, status) => {
     }
   });
 };
+const nonhandleUpdateStatus = (id, status) => {
+  
+  $.ajax({
+    type: "GET",
+    url: `/admin/category/changeStatus/${id}/${status}`,
+    dataType: "json",
+    success: function (response) {
+      const newStatus = response.status;
+      const newStatusClass = newStatus === 'active' ? 'badge-success' : 'badge-danger';
 
+     
+      $(`#status-${id}`).html(`
+        <a href="/changeStatus/${id}/${newStatus}">
+          <span class="badge ${newStatusClass}">${newStatus}</span>
+        </a>
+      `);
+    },
+    error: function (error) {
+      console.error('Error updating status:', error);
+      
+      $(`#status-${id}`).html(`<span class="badge badge-danger">Error updating status</span>`);
+    }
+  });
+};
 jQuery(document).ready(function($)  {
   $('#selectAllCheckbox').change(() => {  
     $('input[name="selectedItems"]').prop('checked', $('#selectAllCheckbox').prop('checked'));
@@ -84,29 +107,69 @@ jQuery(document).ready(function($)  {
   });
 });
 
-Dropzone.options.myDropzone = {
-  autoProcessQueue: false,
-  uploadMultiple: true,
-  parallelUploads: 5,
-  maxFiles: 5,
+// Dropzone.options.myDropzone = {
+//   autoProcessQueue: false,
+//   uploadMultiple: true,
+//   parallelUploads: 5,
+//   maxFiles: 5,
 
-  init() {
-    const myDropzone = this;
+//   init() {
+//     const myDropzone = this;
 
-    document.querySelector(".start").addEventListener("click", () => {
-      myDropzone.processQueue();
-    });
+//     document.querySelector(".start").addEventListener("click", () => {
+//       myDropzone.processQueue();
+//     });
 
-    document.querySelector(".cancel").addEventListener("click", () => {
-      myDropzone.removeAllFiles(true);
-    });
+//     document.querySelector(".cancel").addEventListener("click", () => {
+//       myDropzone.removeAllFiles(true);
+//     });
+//   }
+// };
+
+// const startUpload = () => {
+//   Dropzone.forElement("#myDropzone").processQueue();
+// };
+
+// const cancelUpload = () => {
+//   Dropzone.forElement("#myDropzone").removeAllFiles(true);
+// };
+
+const fetchDataWithSorting = async (status, keyword, sort) => {
+  let query = {};
+  let sortOption = {};
+
+  if (status === 'all') {
+    query = {};
+  } else if (status) {
+    query.status = status;
   }
-};
 
-const startUpload = () => {
-  Dropzone.forElement("#myDropzone").processQueue();
-};
+  if (keyword) {
+    query.$or = [
+      { name: new RegExp(keyword, 'i') },
+      { description: new RegExp(keyword, 'i') },
+    ];
+  }
 
-const cancelUpload = () => {
-  Dropzone.forElement("#myDropzone").removeAllFiles(true);
+  if (sort === 'orderingDesc') {
+    sortOption = { ordering: -1 };
+  }
+
+  return await newsModel.find(query).sort(sortOption);
+};
+const previewImage = (input) => {
+  const preview = document.getElementById('avatarPreview');
+  const file = input.files[0];
+
+  if (file) {
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+      preview.src = e.target.result;
+    };
+
+    reader.readAsDataURL(file);
+  } else {
+    preview.src = '';
+  }
 };

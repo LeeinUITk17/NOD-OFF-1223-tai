@@ -13,45 +13,9 @@
         <div class="navbar hidden-phone">
         
         <ul class="nav">
-        <li class="dropdown active">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="index.ejs">Home <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-                <li><a href="index.ejs">Full Page</a></li>
-                <li><a href="index-gallery.ejs">Gallery Only</a></li>
-                <li><a href="index-slider.ejs">Slider Only</a></li>
-            </ul>
-        </li>
-       <li><a href="features.ejs">Features</a></li>
-        <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="page-full-width.ejs">Pages <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-                <li><a href="page-full-width.ejs">Full Width</a></li>
-                <li><a href="page-right-sidebar.ejs">Right Sidebar</a></li>
-                <li><a href="page-left-sidebar.ejs">Left Sidebar</a></li>
-                <li><a href="page-double-sidebar.ejs">Double Sidebar</a></li>
-            </ul>
-        </li>
-         <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="gallery-4col.ejs">Gallery <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-                <li><a href="gallery-3col.ejs">Gallery 3 Column</a></li>
-                <li><a href="gallery-4col.ejs">Gallery 4 Column</a></li>
-                <li><a href="gallery-6col.ejs">Gallery 6 Column</a></li>
-                <li><a href="gallery-4col-circle.ejs">Gallery 4 Round</a></li>
-                <li><a href="gallery-single.ejs">Gallery Single</a></li>
-            </ul>
-         </li>
-         <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="blog-style1.ejs">Blog <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-                <li><a href="blog-style1.ejs">Blog Style 1</a></li>
-                <li><a href="blog-style2.ejs">Blog Style 2</a></li>
-                <li><a href="blog-style3.ejs">Blog Style 3</a></li>
-                <li><a href="blog-style4.ejs">Blog Style 4</a></li>
-                <li><a href="blog-single.ejs">Blog Single</a></li>
-            </ul>
-         </li>
-         <li><a href="../elements/page-contact.ejs">Contact</a></li>
+       <% listcategory.forEach((item) => { %>
+        <li><a href="features.ejs"><%= item.name%></a></li>
+        <% }); %>
         </ul>
        
         </div>

@@ -15,6 +15,10 @@ const newSchema = new Schema(
       enum: ["active", "inactive"],
     },
     discription: String,
+    ordering:{
+      type:Number,
+      default: 0,
+    },
   },
   {
     timestamps: true,

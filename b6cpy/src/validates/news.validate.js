@@ -33,6 +33,9 @@ const validationRules = {
     }
     return true;
   }),
+  ordering: body("ordering")
+    .isInt({ min: 1 })
+    .withMessage(util.format(notify.ordering, 1)), 
 };
 
 const handleValidate = (listField) => {

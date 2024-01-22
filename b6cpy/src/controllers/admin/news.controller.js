@@ -8,7 +8,7 @@ const {
   updateItem,
   getStatusCounts,
 } = require("../../services/news.services");
-const { upload } = require("../../helper/news.helper");
+const { imageHelper } = require("../../helper/news.helper");
 const { body, validationResult } = require("express-validator");
 const mainName = 'news';
 const linkprefix = `/admin/${mainName}/`;
@@ -21,22 +21,23 @@ var router = express.Router();
 
 class NewsController {
 
-  
-
   getAll = async (req, res, next) => {
     let { status } = req.params;
-   let keyword=req.query.keywords;
+    let keyword = req.query.keywords;
+
     let data;
     const statusCounts = await getStatusCounts();
+
     if (status) {
-      data = await getItems(status,keyword);
+      data = await getItems(status, keyword);
     } else {
       data = await getItems();
     }
-    // status?data = await getItems(status): data = await getItems();
-    res.render("admin/news", { data, statusfilter: this.getStatusFilter(statusCounts, status), keyword, linkprefix });
+    data.sort((a, b) => a.ordering - b.ordering);
 
-  };
+    res.render("admin/news", { data, statusfilter: this.getStatusFilter(statusCounts, status), keyword, linkprefix });
+};
+
 
   getForm = async (req, res, next) => {
     let { id } = req.params;
@@ -49,28 +50,43 @@ class NewsController {
   };
 
   addOrUpdateItem = async (req, res) => {
-    const { id } = req.body;
-    let errors = validationResult(req);
-    // console.log(errors);
-    let listError = errors.errors;
-    if (listError.length > 0) {
-      let messages = [];
-      listError.map((error) => messages.push(error.msg));
-      req.flash("danger", messages, false);
-      return id
-        ? res.redirect(`${linkprefix}form/` + id)
-        : res.redirect(`${linkprefix}form/`);
-    }
-    if (id) {
-      await updateItem(id, req.body);
-      req.flash("success", "Update item thành công", false);
-    } else {
-      await addItem(req.body);
-      req.flash("success", "Add item thành công", false);
-    }
-    res.redirect(`${linkprefix}`);
+    imageHelper(req, res, async (err) => {
+      const { id } = req.body;
+      // let errors = validationResult(req);
+  
+      // let listError = errors.errors;
+      // if (listError.length > 0) {
+      //   let messages = [];
+      //   listError.map((error) => messages.push(error.msg));
+      //   req.flash("danger", messages, false);
+      //   return id
+      //     ? res.redirect(`${linkprefix}form/` + id)
+      //     : res.redirect(`${linkprefix}form/`);
+      // }
+  
+      try {
+        if (id) {
+          await updateItem(id, req.body);
+          req.flash("success", "Update item thành công", false);
+        } else {
+          await addItem(req.body);
+          req.flash("success", "Add item thành công", false);
+        }
+  
+        if (req.file) {
+          const filePath = path.join('uploads', req.file.filename);
+          req.body.file = filePath; 
+        }
+  
+        res.redirect(`${linkprefix}`);
+      } catch (error) {
+        console.error('Error processing form:', error);
+        req.flash("danger", "An error occurred", false);
+        res.redirect(`${linkprefix}`);
+      }
+    });
   };
-
+  
   deleteItem = async (req, res, next) => {
     let { id } = req.params;
     await deleteItem(id);
@@ -182,18 +198,6 @@ statusTool = async (req, res, next) => {
 
   // res.redirect(`${linkprefix}`);
 
-};
-
-uploadFile = async (req, res, next) => {
-  upload.single('file')(req, res, (err) => {
-    if (err instanceof multer.MulterError) {
-      return res.status(500).json({ error: `Multer Error: ${err.message}` });
-    } else if (err) {
-      return res.status(500).json({ error: `Unknown error occurred: ${err.message}` });
-    }
-    const filePath = path.join('../../../public/uploads', req.file.filename); 
-    res.json({ success: true, filePath });
-  });
 };
 
 }

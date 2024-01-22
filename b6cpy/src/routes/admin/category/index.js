@@ -2,13 +2,11 @@ const express = require("express");
 const router = express.Router();
 const newController = require("../../../controllers/admin/category.controller");
 const { handleValidate } = require("../../../validates/news.validate");
-const multer = require('multer');
-const upload = multer({ dest: 'uploads/' });
 router.use(express.json());
 router.get("/form", newController.getForm);
 router.post(
   "/form",
-  handleValidate(["name", "discription", "status"]),
+  handleValidate(["name", "discription", "status","ordering"]),
   newController.addOrUpdateItem
 );
 router.get("/form/:id", newController.getForm);
@@ -20,5 +18,5 @@ router.get("(/:status)?", newController.getAll);
 router.get('(:/status)?',newController.statusCount);
 
 router.post("/changeStatusTool", newController.statusTool);
-router.post("/upload", newController.uploadFile);
+
 module.exports = router;
