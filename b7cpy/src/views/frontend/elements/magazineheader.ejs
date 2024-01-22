@@ -1,0 +1,58 @@
+<div class="row header"><!-- Begin Header -->
+      
+    <!-- Logo
+    ================================================== -->
+    <div class="span5 logo">
+        <a href="index.ejs"><img src="img/piccolo-logo.png" alt="" /></a>
+        <h5>Big Things... Small Packages</h5>
+    </div>
+    
+    <!-- Main Navigation
+    ================================================== -->
+    <div class="span7 navigation">
+        <div class="navbar hidden-phone">
+        
+        <ul class="nav">
+       <% listcategory.forEach((item) => { %>
+        <li><a href="features.ejs"><%= item.name%></a></li>
+        <% }); %>
+        </ul>
+       
+        </div>
+
+        <!-- Mobile Nav
+        ================================================== -->
+        <form action="#" id="mobile-nav" class="visible-phone">
+            <div class="mobile-nav-select">
+            <select onchange="window.open(this.options[this.selectedIndex].value,'_top')">
+                <option value="">Navigate...</option>
+                <option value="index.ejs">Home</option>
+                    <option value="index.ejs">- Full Page</option>
+                    <option value="index-gallery.ejs">- Gallery Only</option>
+                    <option value="index-slider.ejs">- Slider Only</option>
+                <option value="features.ejs">Features</option>
+                <option value="page-full-width.ejs">Pages</option>
+                    <option value="page-full-width.ejs">- Full Width</option>
+                    <option value="page-right-sidebar.ejs">- Right Sidebar</option>
+                    <option value="page-left-sidebar.ejs">- Left Sidebar</option>
+                    <option value="page-double-sidebar.ejs">- Double Sidebar</option>
+                <option value="gallery-4col.ejs">Gallery</option>
+                    <option value="gallery-3col.ejs">- 3 Column</option>
+                    <option value="gallery-4col.ejs">- 4 Column</option>
+                    <option value="gallery-6col.ejs">- 6 Column</option>
+                    <option value="gallery-4col-circle.ejs">- Gallery 4 Col Round</option>
+                    <option value="gallery-single.ejs">- Gallery Single</option>
+                <option value="blog-style1.ejs">Blog</option>
+                    <option value="blog-style1.ejs">- Blog Style 1</option>
+                    <option value="blog-style2.ejs">- Blog Style 2</option>
+                    <option value="blog-style3.ejs">- Blog Style 3</option>
+                    <option value="blog-style4.ejs">- Blog Style 4</option>
+                    <option value="blog-single.ejs">- Blog Single</option>
+                <option value="page-contact.ejs">Contact</option>
+            </select>
+            </div>
+            </form>
+
+    </div>
+    
+  </div><!-- End Header -->

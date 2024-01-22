@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<%- include('./elements/header.ejs'); %>
+<body class="home">
+    <!-- Color Bars (above header)-->
+	<div class="color-bar-1"></div>
+    <div class="color-bar-2 color-bg"></div>
+    
+    <div class="container">
+    
+        <%- include('./elements/magazineheader.ejs'); %>
+     
+        <%- include('./elements/headline.ejs'); %>
+    
+    <%- include('./elements/galleryRow.ejs'); %>
+    
+    <div class="row"><!-- Begin Bottom Section -->
+    
+    	<!-- Blog Preview
+        ================================================== -->
+        <%- include('./elements/blog.ejs'); %>
+    
+        <!-- Client Area
+        ================================================== -->
+        <%- include('./elements/clientArea.ejs'); %>
+    </div><!-- End Bottom Section -->
+    
+    </div> <!-- End Container -->
+
+    <!-- Footer Area
+        ================================================== -->
+        <%- include('./elements/footer.ejs'); %>
+	
+    
+    <!-- Scroll to Top -->  
+    <div id="toTop" class="hidden-phone hidden-tablet">Back to Top</div>
+    
+</body>
+</html>
