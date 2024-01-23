@@ -52,32 +52,30 @@ class NewsController {
   addOrUpdateItem = async (req, res) => {
     imageHelper(req, res, async (err) => {
       const { id } = req.body;
-      // let errors = validationResult(req);
+      let errors = validationResult(req);
   
-      // let listError = errors.errors;
-      // if (listError.length > 0) {
-      //   let messages = [];
-      //   listError.map((error) => messages.push(error.msg));
-      //   req.flash("danger", messages, false);
-      //   return id
-      //     ? res.redirect(`${linkprefix}form/` + id)
-      //     : res.redirect(`${linkprefix}form/`);
-      // }
-  
+      let listError = errors.errors;
+      if (listError.length > 0) {
+        let messages = [];
+        listError.map((error) => messages.push(error.msg));
+        req.flash("danger", messages, false);
+        return id
+          ? res.redirect(`${linkprefix}form/` + id)
+          : res.redirect(`${linkprefix}form/`);
+      }
+     
       try {
         if (id) {
           await updateItem(id, req.body);
           req.flash("success", "Update item thành công", false);
         } else {
-          await addItem(req.body);
+          await addItem(req.body, req.file);
           req.flash("success", "Add item thành công", false);
-        }
-  
+        }  
         if (req.file) {
           const filePath = path.join('uploads', req.file.filename);
-          req.body.file = filePath; 
+          req.body.file = filePath;
         }
-  
         res.redirect(`${linkprefix}`);
       } catch (error) {
         console.error('Error processing form:', error);

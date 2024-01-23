@@ -1,5 +1,5 @@
 const { Schema } = require("mongoose");
-mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
 const COLLECTION_NAME = "News";
 
@@ -7,7 +7,7 @@ const newSchema = new Schema(
   {
     name: {
       type: String,
-      require: true,
+      required: true,
     },
     status: {
       type: String,
@@ -15,8 +15,8 @@ const newSchema = new Schema(
       enum: ["active", "inactive"],
     },
     discription: String,
-    ordering:{
-      type:Number,
+    ordering: {
+      type: Number,
       min: 1,
       default: 1,
     },
@@ -29,5 +29,5 @@ const newSchema = new Schema(
     collection: COLLECTION_NAME,
   }
 );
-// newSchema.pre("save",function)
+
 module.exports = mongoose.model(COLLECTION_NAME, newSchema);

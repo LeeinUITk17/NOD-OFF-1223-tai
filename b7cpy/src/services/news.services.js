@@ -1,15 +1,16 @@
 const mongoose = require("mongoose");
 const newsModel = require("../model/news.model");
+const path=require('path');
 const mainName='news';
 const linkprefix=`/admin/${mainName}/`;
-const addItem = async (req,body) => {
+const addItem = async (body, file) => {
   const newItem = await newsModel.create(body);
-  if(req.file){
-    const filePath=path.join('uploads',req.file.filename);
-    newItem.avatar=filePath;
+  if (file) {
+    const filePath = path.join(file.filename);
+    newItem.avatar = filePath;
     await newItem.save();
   }
-  };
+};
 const getItems = async (status, keyword) => {
   let query = {};
   if (status === 'all') {
