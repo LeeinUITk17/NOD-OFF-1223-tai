@@ -4,7 +4,7 @@ const util = require("util");
 
 const options = {
   name: { min: 2, max: 100 },
-  discription: { min: 2, max: 100 },
+  description: { min: 2, max: 100 },
   status: { active: "active", inactive: "inactive" },
   ordering:{min:1 },
 };
@@ -13,13 +13,13 @@ const validationRules = {
   name: body("name")
     .isLength({ min: options.name.min, max: options.name.max })
     .withMessage(util.format(notify.name, options.name.min, options.name.max)),
-  discription: body("discription")
-    .isLength({ min: options.discription.min, max: options.discription.max })
+  description: body("description")
+    .isLength({ min: options.description.min, max: options.description.max })
     .withMessage(
       util.format(
-        notify.discription,
-        options.discription.min,
-        options.discription.max
+        notify.description,
+        options.description.min,
+        options.description.max
       )
     ),
   status: body("status").custom((value) => {

@@ -36,6 +36,12 @@
               <label for="ordering">Ordering</label>
               <input name="ordering" type="number" id="ordering" class="form-control" value="<%= item.ordering || 0 %>">
             </div>
+            <div class="form-group">
+              <label for="avatar">Avatar</label>
+              <input type="file" class="form-control" name="avatar" onchange="previewImage(this)">
+              <img id="avatarPreview" src="<%= item && item.avatar ? item.avatar : '' %>" alt="Avatar Preview" style="max-width: 100px; margin-top: 10px;">
+              <%= item.avatar%>
+            </div>
             <button type="submit" class="btn btn-primary float-right">Submit</button>
           </div>
         </div>
@@ -44,7 +50,7 @@
   </div>
   <div class="row">
     <div class="col-12">
-      <a href="/admin/category" class="btn btn-secondary">Cancel</a>
+      <a href="/admin/category/all" class="btn btn-secondary">Cancel</a>
     </div>
   </div>
 </section>

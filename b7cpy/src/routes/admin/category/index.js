@@ -6,7 +6,7 @@ router.use(express.json());
 router.get("/form", newController.getForm);
 router.post(
   "/form",
-  handleValidate(["name", "discription", "status","ordering"]),
+  handleValidate(["name", "description", "status","ordering"]),
   newController.addOrUpdateItem
 );
 router.get("/form/:id", newController.getForm);

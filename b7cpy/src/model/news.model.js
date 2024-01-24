@@ -14,7 +14,7 @@ const newSchema = new Schema(
       default: "inactive",
       enum: ["active", "inactive"],
     },
-    discription: String,
+    description: String,
     ordering: {
       type: Number,
       min: 1,
