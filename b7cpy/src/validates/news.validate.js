@@ -6,6 +6,7 @@ const options = {
   name: { min: 2, max: 100 },
   discription: { min: 2, max: 100 },
   status: { active: "active", inactive: "inactive" },
+  ordering:{min:1 },
 };
 
 const validationRules = {
@@ -34,8 +35,13 @@ const validationRules = {
     return true;
   }),
   ordering: body("ordering")
-    .isInt({ min: 1 })
-    .withMessage(util.format(notify.ordering, 1)), 
+    .isInt({ min: options.ordering.min })
+    .withMessage(
+      util.format(
+        notify.ordering, 
+        options.ordering.min
+        )
+        ), 
 };
 
 const handleValidate = (listField) => {
