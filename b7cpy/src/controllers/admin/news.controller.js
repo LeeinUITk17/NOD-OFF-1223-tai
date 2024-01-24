@@ -79,7 +79,7 @@ class NewsController {
        } catch (error) {
           console.error('Error processing form:', error);
           req.flash("danger", "An error occurred", false);
-          res.redirect(`${linkprefix}/all`);
+          res.redirect(`${linkprefix}`);
        }
     });
  };
