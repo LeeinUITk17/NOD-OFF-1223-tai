@@ -173,3 +173,4 @@ const previewImage = (input) => {
     preview.src = '';
   }
 };
+

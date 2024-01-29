@@ -12,6 +12,6 @@ router.use(async(req,res,next)=>{
     next();
 })
 router.use('/' , require('../frontend/dashboard'));
-
+router.use('/news', require('../frontend/news'));
 
 module.exports = router;

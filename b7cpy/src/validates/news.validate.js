@@ -6,7 +6,7 @@ const options = {
   name: { min: 2, max: 100 },
   description: { min: 2, max: 100 },
   status: { active: "active", inactive: "inactive" },
-  ordering:{min:1 },
+  ordering: { min: 1 },
 };
 
 const validationRules = {
@@ -14,7 +14,10 @@ const validationRules = {
     .isLength({ min: options.name.min, max: options.name.max })
     .withMessage(util.format(notify.name, options.name.min, options.name.max)),
   description: body("description")
-    .isLength({ min: options.description.min, max: options.description.max })
+    .isLength({
+      min: options.description.min,
+      max: options.description.max,
+    })
     .withMessage(
       util.format(
         notify.description,
@@ -23,7 +26,10 @@ const validationRules = {
       )
     ),
   status: body("status").custom((value) => {
-    if (value !== options.status.active && value !== options.status.inactive) {
+    if (
+      value !== options.status.active &&
+      value !== options.status.inactive
+    ) {
       throw new Error(
         util.format(
           notify.status,
@@ -37,14 +43,12 @@ const validationRules = {
   ordering: body("ordering")
     .isInt({ min: options.ordering.min })
     .withMessage(
-      util.format(
-        notify.ordering, 
-        options.ordering.min
-        )
-        ), 
+      util.format(notify.ordering, options.ordering.min)
+    ),
 };
 
 const handleValidate = (listField) => {
+  // Combine individual validation rules into a single chain
   return listField.map((field) => validationRules[field]);
 };
 
