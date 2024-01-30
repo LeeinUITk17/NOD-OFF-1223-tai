@@ -1,9 +1,11 @@
 const mongoose = require("mongoose");
+const slugify = require("slugify");
 const newsModel = require("../model/category.model");
 const path=require('path');
 const mainName='category';
 const linkprefix=`/admin/${mainName}/`;
 const addItem = async (body) => {
+  body.slug=slugify(body.name, { lower: true });
    await newsModel.create(body);
 };
 const getItems = async (status, keyword) => {
@@ -31,6 +33,9 @@ const deleteItem = async (id) => {
 };
 
 const updateItem = async (id, body) => {
+  if (body.name) {
+    body.slug = slugify(body.name, { lower: true });
+  }
   await newsModel.findByIdAndUpdate(
     { _id: new mongoose.Types.ObjectId(id) },
     { $set: body }

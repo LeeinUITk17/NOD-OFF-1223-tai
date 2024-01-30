@@ -14,7 +14,7 @@
         
         <ul class="nav">
        <% listcategory.forEach((item) => { %>
-        <li><a href="features.ejs"><%= item.name%></a></li>
+        <li><a href="<%= item.slug %>"><%= item.name%></a></li>
         <% }); %>
         </ul>
        

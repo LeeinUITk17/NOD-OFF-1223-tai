@@ -1,6 +1,5 @@
 const { Schema } = require("mongoose");
 mongoose = require("mongoose");
-
 const COLLECTION_NAME = "category";
 
 const newSchema = new Schema(
@@ -23,6 +22,9 @@ const newSchema = new Schema(
     avatar: {
       type: String,
     },
+    slug:{
+      type: String,
+    }
   },
   {
     timestamps: true,

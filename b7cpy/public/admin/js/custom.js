@@ -1,4 +1,5 @@
 
+const slugify =require('slugifty');
 
 const handleDelete = (link) => {
   Swal.fire({
@@ -173,4 +174,3 @@ const previewImage = (input) => {
     preview.src = '';
   }
 };
-
