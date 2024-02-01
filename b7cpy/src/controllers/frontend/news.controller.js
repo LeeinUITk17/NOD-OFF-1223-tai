@@ -10,6 +10,7 @@
 // var router = express.Router();
 class NewsController {
     getAll = async (req, res, next) => {
+        // console.log('testnews');
         res.render('frontend/news');
     }
 }

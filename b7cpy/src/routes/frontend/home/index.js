@@ -1,7 +1,6 @@
 const express = require('express');
-const router = express.Router();
 const homeController = require('../../../controllers/frontend/home.controller');
-
-router.get('', homeController.getAll);
-
+const router = express.Router();
+router.get('/', homeController.getAll);
+// console.log('checkhome');
 module.exports = router;

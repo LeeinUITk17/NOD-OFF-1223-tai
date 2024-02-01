@@ -13,6 +13,9 @@ router.use(async (req, res, next) => {
 });
 
 router.use('/', require('./home'));
+router.use('/home',require('./home'));
 router.use('/news', require('./news'));
-
+router.use('/contact', require('./contact'));
+router.use('/about', require('./about'));
+router.use('/category', require('./category'));
 module.exports = router;
