@@ -1,5 +1,4 @@
 
-const slugify =require('slugifty');
 
 const handleDelete = (link) => {
   Swal.fire({

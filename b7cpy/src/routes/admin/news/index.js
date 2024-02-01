@@ -16,7 +16,7 @@ router.get('/changeStatus/:id/:status', newController.updateStatus);
 
 router.get("(/:status)?", newController.getAll);  
 
-router.get('(:/status)?',newController.statusCount);
+router.get('(/:status)?',newController.statusCount);
 
 router.post("/changeStatusTool", newController.statusTool);
 router.post("/upload/:id", newController.imageUpload);
