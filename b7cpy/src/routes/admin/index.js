@@ -11,5 +11,5 @@ router.use((req,res,next)=>{
 router.use('/' , require('./dashboard'));
 router.use('/news' , require('./news'));
 router.use('/category',require('./category'));
-
+router.use('/setting',require('./setting'));
 module.exports = router;

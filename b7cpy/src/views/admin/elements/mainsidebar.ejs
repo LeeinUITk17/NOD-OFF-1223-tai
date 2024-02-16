@@ -11,7 +11,11 @@
                                 { name: ' Category', icon: 'ion-clipboard', link: `admin/category/all`},
                               ],
         name: 'Category', icon: 'fas fa-list', link: `#`},
-        {parent: false, name: 'Setting', icon: 'ion-ios-keypad-outline', link: `admin`},
+        {parent: true, child: [
+                                { name: 'Form Setting', icon: 'ion-clipboard', link: `admin/setting/form`},
+                                { name: 'View Information', icon: 'ion-clipboard', link: `admin/setting`}
+                              ],
+        name: 'Setting', icon: 'fas fa-list', link: `admin/news`},
     ];
     
 
