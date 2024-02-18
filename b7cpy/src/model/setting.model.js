@@ -12,7 +12,7 @@ const newSchema = new Schema(
     twitter: { type: String },
     youtube: { type: String },
     about: { type: String },
-    logo: {
+    avatar: {
         type: String,
       },
   },

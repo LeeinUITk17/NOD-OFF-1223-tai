@@ -11,6 +11,10 @@ router.use(async (req, res, next) => {
     res.locals.listcategory = await frontendService.getAllCategory();
     next();
 });
+router.use(async(req, res, next)=>{
+    res.locals.datasetting=await frontendService.getAllSetting();
+    next();
+})
 
 router.use('/', require('./home'));
 router.use('/home',require('./home'));

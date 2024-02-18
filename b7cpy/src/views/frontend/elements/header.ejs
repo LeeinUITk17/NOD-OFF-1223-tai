@@ -25,7 +25,10 @@
  
     <!-- favicons
      ================================================== -->
-     <link rel="shortcut icon" href="/frontend/images/logo.png" type="image/x-icon">
-     <link rel="icon" href="/frontend/images/logo.png" type="image/x-icon">
- 
+    
+     <% datasetting.forEach((item) => { %>
+      <link rel="shortcut icon" href="/<%= item.avatar %>" type="image/x-icon">
+      <link rel="icon" href="/<%= item.avatar %>" type="image/x-icon">
+  <% }); %>
+  
  </head>

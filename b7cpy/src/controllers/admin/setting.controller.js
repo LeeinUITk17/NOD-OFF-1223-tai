@@ -48,7 +48,30 @@ class DashboardController {
         res.redirect(`${linkprefix}`);
       }
     };
+    imageUpload = async (req, res, next) => {
+      const { id } = req.params;
     
+      if (!id) {
+        req.flash("danger", "Invalid operation", false);
+        return res.redirect(`${linkprefix}`);
+      }
+    
+      imageHelper(req, res, async (err) => {
+        try {
+          const filePath = path.join(req.file.filename);
+          req.body.file = filePath;
+    
+          await updateItem(id, { avatar: filePath });
+    
+          req.flash("success", "Update image thành công", false);
+          res.redirect(`${linkprefix}`);
+        } catch (error) {
+          console.error('Error processing form:', error);
+          req.flash("danger", "An error occurred", false);
+          res.redirect(`${linkprefix}`);
+        }
+      });
+    };
 }
 
 module.exports = new DashboardController();

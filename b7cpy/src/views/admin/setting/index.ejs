@@ -5,23 +5,20 @@
             <h3 class="card-title">Contact Information</h3>
         </div>
         <div class="card-body p-0">
-            <% const attributes = ['address', 'email', 'phone', 'facebook', 'twitter', 'youtube']; %>
+            <% const attributes = ['address', 'email', 'phone', 'facebook', 'twitter', 'youtube','about','avatar']; %>
 
             <% if (data && Array.isArray(data) && data.length > 0) { %>
                 <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <% data.forEach(item => { %>
-                                <th><%= item._id %></th>
-                            <% }); %>
-                        </tr>
-                    </thead>
                     <tbody>
                         <% attributes.forEach(attribute => { %>
                             <tr>
                                 <td><%= attribute.replace(/([A-Z])/g, ' $1').trim() %></td>
                                 <% data.forEach(item => { %>
-                                    <td><%= item[attribute] %></td>
+                                    <% if (attribute === 'avatar') { %>
+                                        <td><img src="/<%= item[attribute] %>" alt="Avatar"></td>
+                                    <% } else { %>
+                                        <td><%= item[attribute] %></td>
+                                    <% } %>
                                 <% }); %>
                             </tr>
                         <% }); %>
