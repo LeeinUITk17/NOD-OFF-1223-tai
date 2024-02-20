@@ -33,11 +33,10 @@
                 <option value="inactive" value="inactive" <%= (item.status == "inactive") ? 'selected="selected"' : '' %>>Inactive</option>
               </select>
             </div>
+            <label for="description">Description</label>
             <div class="form-group">
-              <label for="description">Description</label>
               <input name="description" placeholder="Description...." type="text" id="description" class="form-control" value="<%= item.description  %>">
-              <!-- <textarea name="description" id="content_ck" cols="30" rows="10" class="form-control"> </textarea> -->
-            </div>
+          </div>
             <div class="form-group">
               <label for="ordering">Ordering</label>
               <input name="ordering" type="number" id="ordering" class="form-control" value="<%= item.ordering  %>">
