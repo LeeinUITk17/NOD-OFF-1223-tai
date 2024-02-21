@@ -5,14 +5,14 @@
     <div class="row header-content">
 
         <div class="logo">
-          <a href="<%= listcategory[0].slug %>">Home</a>
+          <a href="/<%= listcategory[0].slug %>">Home</a>
        </div>
 
         <nav id="main-nav-wrap">
              <ul class="main-navigation sf-menu">
                  
                      <% listcategory.forEach((item) => { %>
-                      <li><a href="<%= item.slug %>"><%= item.name%></a></li>
+                      <li><a href="/<%= item.slug %>"><%= item.name%></a></li>
                       <% }); %>
                                                           
              </ul>

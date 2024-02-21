@@ -25,7 +25,7 @@
                                              <li><a href="#" >L.ThTai</a></li>				
                                          </ul>	
 
-                                        <h1 class="slide-title"><a href="/news" title="">Minimalism Never Goes Out of Style</a></h1> 
+                                        <h1 class="slide-title"><a href="/home" title="">Minimalism Never Goes Out of Style</a></h1> 
                                     </div> 				   					  
                             
                                 </div>
@@ -44,7 +44,7 @@
                                              <li><a href="#">L.ThTai</a></li>					
                                          </ul>	
 
-                                        <h1 class="slide-title"><a href="/news" title="">Enhancing Your Designs with Negative Space</a></h1>
+                                        <h1 class="slide-title"><a href="/home" title="">Enhancing Your Designs with Negative Space</a></h1>
                                     </div>		   				   					  
                             
                                 </div>
@@ -63,7 +63,7 @@
                                              <li><a href="#" class="author">Naruto Uzumaki</a></li>					
                                          </ul>	
 
-                                        <h1 class="slide-title"><a href="/news" title="">Music Album Cover Designs for Inspiration</a></h1>
+                                        <h1 class="slide-title"><a href="/home" title="">Music Album Cover Designs for Inspiration</a></h1>
                                     </div>
 
                                 </div>
@@ -78,7 +78,7 @@
             <article class="brick entry format-standard animate-this">
 
     <div class="entry-thumb">
-       <a href="/news/<%= item.slug%>" class="thumb-link">
+       <a href="/news/<%= item._id%>" class="thumb-link">
            <img src="/<%= item.avatar%>" alt="building">             
        </a>
     </div>
@@ -92,12 +92,9 @@
                 </span>			
             </div>
 
-            <h1 class="entry-title"><a href="/news/<%= item.slug%>"><%= item.description%></a></h1>
+            <h1 class="entry-title"><a href="/news/<%= item._id%>"><%= item.description%></a></h1>
             
         </div>
-             <div class="entry-excerpt">
-                 <%= item.content%>
-             </div>
     </div>
 
      </article> <!-- end article -->

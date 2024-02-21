@@ -1,15 +1,18 @@
 const categoryModel = require('../model/category.model');
-const settingModel=require('../model/setting.model');
-const newsModel=require('../model/news.model');
+const settingModel = require('../model/setting.model');
+const newsModel = require('../model/news.model');
+
 class FrontendService {
-  getAllCategory = async () => {
+  async getAllCategory() {
     return await categoryModel.find({ status: 'active' });
   }
-  getAllSetting= async()=>{
+
+  async getAllSetting() {
     return await settingModel.find();
   }
-  getAllNews=async()=>{
-    return await newsModel.find({status:'active'});
+
+  async getAllNews() {
+    return await newsModel.find({ status: 'active' });
   }
 }
 
