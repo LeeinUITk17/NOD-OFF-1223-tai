@@ -14,6 +14,8 @@ class NewsController {
     //         next(error);
     //     }
     // }
+  
+
 
     async getForm(req, res, next) {
         try {

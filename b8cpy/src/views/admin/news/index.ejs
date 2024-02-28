@@ -79,7 +79,7 @@
                     <img src="/<%= item.avatar %>" alt="Avatar"  class="rounded-circle" style="width: 50px;">
                   </td>               
                   <td class="project-state" id="status-<%= item.id %>">
-                    <a href="/changeStatus/<%= item.id %>/<%= item.status %>" onclick="handleUpdateStatus('<%= item.id %>', '<%= item.status %>'); return false;">
+                    <a href="/changeStatus/<%= item.id %>/<%= item.status %>" onclick="handleUpdateStatus('<%= item.id %>', '<%= item.status %>','news'); return false;">
                       <span class="badge <%= item.status === 'active' ? 'badge-success' : 'badge-danger' %>"><%= item.status %></span>
                     </a>
                   </td>

@@ -21,11 +21,12 @@
                      <h1 class="page-title"><%= item.description%></h1>	
 
                      <ul class="entry-meta">
-                         <li class="date">September 06, 2016</li>						
-                         <li class="cat"><a href="">Wordpress</a><a href="">Design</a></li>				
+                         <li class="date">September 02, 2023</li>						
+                         <li class="cat"><a href="">L.ThTai</a><a href="">Design</a></li>				
                      </ul>						
 
                     <p><%- item.content%></p>
+                    <br>
                      <p class="tags">
                             <span>Tagged in :</span>
                              <a href="#">orci</a><a href="#">lectus</a><a href="#">varius</a><a href="#">turpis</a>
@@ -212,30 +213,26 @@
 
                 <h3>Leave a Comment</h3>
 
-               <form name="contactForm" id="contactForm" method="post" action="">
-                      <fieldset>
-
-                  <div class="form-field">
-                             <input name="cName" type="text" id="cName" class="full-width" placeholder="Your Name" value="">
-                  </div>
-
-                  <div class="form-field">
-                             <input name="cEmail" type="text" id="cEmail" class="full-width" placeholder="Your Email" value="">
-                  </div>
-
-                  <div class="form-field">
-                             <input name="cWebsite" type="text" id="cWebsite" class="full-width" placeholder="Website"  value="">
-                  </div>
-
-                  <div class="message form-field">
-                     <textarea name="cMessage" id="cMessage" class="full-width" placeholder="Your Message" ></textarea>
-                  </div>
-
-                  <button type="submit" class="submit button-primary">Submit</button>
-
-                      </fieldset>
-                     </form> <!-- Form End -->
-
+                <form method="post" action="/contact/mail">
+                  <fieldset>
+                      <div class="form-field">
+                          <label for="cName">Your Name:</label>
+                          <input name="cName" type="text" id="cName" class="full-width" placeholder="Your Name" required>
+                      </div>
+              
+                      <div class="form-field">
+                          <label for="cEmail">Your Email:</label>
+                          <input name="cEmail" type="email" id="cEmail" class="full-width" placeholder="Your Email" required>
+                      </div>
+              
+                      <div class="message form-field">
+                          <label for="cMessage">Your Message:</label>
+                          <textarea name="cMessage" id="cMessage" class="full-width" placeholder="Your Message" required></textarea>
+                      </div>
+              
+                      <button type="submit" class="submit button-primary full-width-on-mobile">Submit</button>
+                  </fieldset>
+              </form>
             </div> <!-- Respond End -->
 
           </div> <!-- end col-full -->

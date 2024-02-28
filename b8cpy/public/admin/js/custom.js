@@ -15,11 +15,11 @@ const handleDelete = (link) => {
     }
   });
 };
-const handleUpdateStatus = (id, status) => {
+const handleUpdateStatus = (id, status,type) => {
   
   $.ajax({
     type: "GET",
-    url: `/admin/news/changeStatus/${id}/${status}`,
+    url: `/admin/${type}/changeStatus/${id}/${status}`,
     dataType: "json",
     success: function (response) {
       const newStatus = response.status;
@@ -39,30 +39,30 @@ const handleUpdateStatus = (id, status) => {
     }
   });
 };
-const nonhandleUpdateStatus = (id, status) => {
+// const nonhandleUpdateStatus = (id, status) => {
   
-  $.ajax({
-    type: "GET",
-    url: `/admin/category/changeStatus/${id}/${status}`,
-    dataType: "json",
-    success: function (response) {
-      const newStatus = response.status;
-      const newStatusClass = newStatus === 'active' ? 'badge-success' : 'badge-danger';
+//   $.ajax({
+//     type: "GET",
+//     url: `/admin/category/changeStatus/${id}/${status}`,
+//     dataType: "json",
+//     success: function (response) {
+//       const newStatus = response.status;
+//       const newStatusClass = newStatus === 'active' ? 'badge-success' : 'badge-danger';
 
      
-      $(`#status-${id}`).html(`
-        <a href="/changeStatus/${id}/${newStatus}">
-          <span class="badge ${newStatusClass}">${newStatus}</span>
-        </a>
-      `);
-    },
-    error: function (error) {
-      console.error('Error updating status:', error);
+//       $(`#status-${id}`).html(`
+//         <a href="/changeStatus/${id}/${newStatus}">
+//           <span class="badge ${newStatusClass}">${newStatus}</span>
+//         </a>
+//       `);
+//     },
+//     error: function (error) {
+//       console.error('Error updating status:', error);
       
-      $(`#status-${id}`).html(`<span class="badge badge-danger">Error updating status</span>`);
-    }
-  });
-};
+//       $(`#status-${id}`).html(`<span class="badge badge-danger">Error updating status</span>`);
+//     }
+//   });
+// };
 jQuery(document).ready(function($)  {
   $('#selectAllCheckbox').change(() => {  
     $('input[name="selectedItems"]').prop('checked', $('#selectAllCheckbox').prop('checked'));
