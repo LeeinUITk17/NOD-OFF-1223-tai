@@ -1,5 +1,8 @@
 <section id="bricks">
-
+    <button type="button" class="btn btn-block btn-outline-dark">Keyword: <%= keyword %></button>
+    <% if (data && Array.isArray(data)) { %>
+        <button type="button" class="btn btn-block btn-outline-dark">Quantity searched: <%= data.length %></button>
+    <% } %>
     <div class="row masonry">
 
         <!-- brick-wrapper -->

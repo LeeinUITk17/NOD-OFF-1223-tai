@@ -1,22 +1,14 @@
 <%
     let arrMenu = [
         {parent: false, name: 'Dashboard', icon: 'ion-ios-keypad-outline', link: `admin`},
-        {parent: false, name: 'Magazine', icon: 'ion-ios-keypad-outline', link: ``},
         {parent: true, child: [
-                                { name: ' News Dashboard', icon: 'ion-clipboard', link: `admin/news/all`},
-                              ],
-        name: 'Manage News', icon: 'fas fa-list', link: `admin/news`},
-
-        {parent: true, child: [
+                                { name: ' News', icon: 'ion-clipboard', link: `admin/news/all`},
                                 { name: ' Category', icon: 'ion-clipboard', link: `admin/category/all`},
+                                { name: ' Setting', icon: 'ion-clipboard', link: `admin/setting`},
+                                { name: ' Rss', icon: 'ion-clipboard', link: `admin/rss`},
+                                { name: ' Magazine', icon: 'ion-clipboard', link: ``},
                               ],
-        name: 'Category', icon: 'fas fa-list', link: `#`},
-        {parent: true, child: [
-      
-                                { name: 'View Information', icon: 'ion-clipboard', link: `admin/setting`},
-                              ],
-        name: 'Setting', icon: 'fas fa-list', link: `admin/news`},
-        {parent: false, name: 'Rss', icon: 'ion-ios-keypad-outline', link: `admin/rss`},
+        name: 'News', icon: 'fas fa-list', link: `admin/news`},
         {parent: true, child: [
                                 { name: 'Product', icon: 'ion-clipboard', link: `admin/product/all`},
                               ],

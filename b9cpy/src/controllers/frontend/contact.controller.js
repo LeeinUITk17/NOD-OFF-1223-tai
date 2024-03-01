@@ -1,5 +1,13 @@
 const nodemailer = require("nodemailer");
-
+const mailReplyContent = require('../../helper/mailreply');
+const {
+  addItem,
+  getItems,
+  deleteItem,
+  getItemById,
+  updateItem,
+  getStatusCounts,
+}=require('../../services/frontendContact.service');
 class ContactController {
     constructor() {
         this.transporter = nodemailer.createTransport({
@@ -17,14 +25,18 @@ class ContactController {
 
     sendContactMail = async (req, res, next) => {
         try {
-            const { cName, cEmail, cMessage } = req.body;
-            console.log(cName, cEmail, cMessage);
+            const { Name, Email, Message } = req.body;
+          await addItem(req.body);
+            // Invoke the mailReplyContent function to get the actual content
+            const replyContent = mailReplyContent();
+            
             const mailOptions = {
                 from: 'mrtaivietbac@gmail.com',
-                to: cEmail,
-                subject: cName,
-                text: cMessage
+                to: Email,
+                subject: `Thank you for your feedback, ${Name}!`, 
+                html: `<p>Dear ${Name},</p><p>${replyContent}</p>`, 
             };
+    
             await this.transporter.sendMail(mailOptions);
             res.redirect('/home');
         } catch (error) {

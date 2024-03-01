@@ -24,7 +24,11 @@ const newSchema = new Schema(
     },
     slug:{
       type: String,
-    }
+    },
+    special: {
+      type: Boolean, 
+      default: true, 
+    },
   },
   {
     timestamps: true,

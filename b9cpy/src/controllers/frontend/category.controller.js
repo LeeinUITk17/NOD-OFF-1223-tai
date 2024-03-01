@@ -1,6 +1,7 @@
 class categoryController {
     getAll = async (req, res, next) => {
-        res.render('frontend/category');
+        let{slug}=req.params; 
+        res.render('frontend/category',{slug});
     }
 }
 

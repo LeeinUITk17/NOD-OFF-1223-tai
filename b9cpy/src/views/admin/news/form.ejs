@@ -52,6 +52,15 @@
                   <option value="false" <%= (item.special === false) ? 'selected="selected"' : '' %>>False</option>
               </select>
           </div>
+          <div class="form-group">
+            <label for="category">Category</label>
+            <select name="category" id="category" class="form-control custom-select">
+              <option selected disabled>Select one</option>
+              <% listcategory.forEach((item) => { %>
+                  <option value="<%= item.name %>" <%= (item.category === item.name) ? 'selected="selected"' : '' %>><%= item.name %></option>
+                <%  }); %>
+            </select>
+          </div>
             <button type="submit" class="btn btn-primary float-right">Submit General Info</button>
           </div>
         </div>

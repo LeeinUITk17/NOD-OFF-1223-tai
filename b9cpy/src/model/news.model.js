@@ -33,6 +33,9 @@ const newSchema = new Schema(
       type: Boolean, 
       default: false, 
     },
+    category: {
+      type: String,
+    },
   },
   {
     timestamps: true,

@@ -8,32 +8,33 @@
           <div class="grid-sizer"></div>
 
 
-          <% listnews.forEach((item) => { %>
-            <article class="brick entry format-standard animate-this">
+        <% listnews.forEach((item) => { %>
+            <% if(item.category === slug) { %>
+                <article class="brick entry format-standard animate-this">
 
-    <div class="entry-thumb">
-       <a href="/news/<%= item._id%>" class="thumb-link">
-           <img src="/<%= item.avatar%>" alt="building">             
-       </a>
-    </div>
+                    <div class="entry-thumb">
+                        <a href="/news/<%= item._id %>" class="thumb-link">
+                            <img src="/<%= item.avatar %>" alt="building">             
+                        </a>
+                    </div>
 
-    <div class="entry-text">
-        <div class="entry-header">
+                    <div class="entry-text">
+                        <div class="entry-header">
 
-            <div class="entry-meta">
-                <span class="cat-links">
-                    <a href="#"><%= item.name%></a>               				
-                </span>			
-            </div>
+                            <div class="entry-meta">
+                                <span class="cat-links">
+                                    <a href="#"><%= item.name %></a>               				
+                                </span>			
+                            </div>
 
-            <h1 class="entry-title"><a href="/news/<%= item._id%>"><%= item.description%></a></h1>
-            
-        </div>
-    </div>
+                            <h1 class="entry-title"><a href="/news/<%= item._id %>"><%= item.description %></a></h1>
 
-     </article> <!-- end article -->
+                        </div>
+                    </div>
 
-    <% }); %>
+                </article> <!-- end article -->
+            <% } %>
+        <% }); %>
         
          <!-- format audio here -->
         
