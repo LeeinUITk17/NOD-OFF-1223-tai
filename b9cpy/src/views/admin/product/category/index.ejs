@@ -3,7 +3,7 @@
     <div class="card">
       <div class="card-header">
         <div class="card-tools">
-          <a href="/admin/product/form">
+          <a href="/admin/product/category/form">
             <button link type="button" class="btn btn-block btn-primary">Add new</button>
           </a>
   
@@ -56,17 +56,15 @@
         <table class="table table-striped projects">
           <thead>
             <tr>
-            <th style="width: 5%; font: size 5%;" >SelectAll<input type="checkbox" id="selectAllCheckbox"></th>
-              <th style="width: 8%" >ID</th>
-              <th style="width: 8%">Name</th>
-              <th style="width: 8%">Description</th>
-              <th style="width: 8%">Ordering</th>
-              <th style="width: 8%">Avatar</th>
-              <th style="width: 8%" class="text-center">Status</th>
-              <th style="width: 8%">Price</th>
-              <th style="width: 8%">Total</th>
-              <th style="width: 8%" class="text-center">Category</th>
-            </tr>
+              <th style="width: 10%" ><input type="checkbox" id="selectAllCheckbox">Select all</th>
+               <th style="width: 5%" >ID</th>
+               <th style="width: 10%">Name</th>
+               <th style="width: 10%">Description</th>
+               <th style="width: 10%">Ordering</th>
+               <th style="width: 10%">Avatar</th>
+               <th style="width: 10%" class="text-center">Status</th>
+               <th style="width: 10%" class="text-center">Special</th>
+             </tr>
           </thead>
         
             <tbody>
@@ -80,23 +78,23 @@
                     <td><%= item.ordering %></td>
                     <td>
                       <img src="/<%= item.avatar %>" alt="Avatar"  class="rounded-circle" style="width: 50px;">
-                    </td>               
+                    </td> 
                     <td class="project-state" id="status-<%= item.id %>">
-                      <a href="/changeStatus/<%= item.id %>/<%= item.status %>" onclick="handleUpdateStatus('<%= item.id %>', '<%= item.status %>','product'); return false;">
+                      <a href="/changeStatus/<%= item.id %>/<%= item.status %>" onclick="handleUpdateStatus('<%= item.id %>', '<%= item.status %>','product/category'); return false;">
                         <span class="badge <%= item.status === 'active' ? 'badge-success' : 'badge-danger' %>"><%= item.status %></span>
                       </a>
                     </td>
-                    <td><%= item.price %></td>
-                    <td><%= item.total %></td>
-                    <td class="project-state" id="category-<%= item.id %>">
-                      <span class="badge badge-success"><%= item.category %></span>
+                    <td class="project-state" id="status-<%= item.id %>">
+                      <span class="badge <%= item.special ? 'badge-success' : 'badge-danger' %>">
+                        <%= item.special ? 'True' : 'False' %>
+                      </span>
                     </td>
                     <td class="project-actions text-right text-center">
-                      <a class="btn btn-info btn-sm" href="/admin/product/form/<%= item.id %>">
+                      <a class="btn btn-info btn-sm" href="/admin/product/category/form/<%= item.id %>">
                         <i class="fas fa-pencil-alt"> </i>
                         Edit
                       </a>
-                      <a class="btn btn-danger btn-delete btn-sm" href="javascript:handleDelete('/admin/product/delete/<%= item.id %>')">
+                      <a class="btn btn-danger btn-delete btn-sm" href="javascript:handleDelete('/admin/product/category/delete/<%= item.id %>')">
                         <i class="fas fa-trash"> </i>
                         Delete
                       </a>
@@ -115,9 +113,9 @@
                 Action
               </button>
               <ul class="dropdown-menu">
-                <li class="dropdown-item"><a href="/admin/product/changeStatusTool" data-action="set_to_active">Set to Active</a></li>
-                <li class="dropdown-item"><a href="/admin/product/changeStatusTool" data-action="set_to_inactive">Set to Inactive</a></li>
-                <li class="dropdown-item"><a href="/admin/product/changeStatusTool" data-action="set_to_delete">Set to Delete</a></li>
+                <li class="dropdown-item"><a href="/admin/product/category/changeStatusTool" data-action="set_to_active">Set to Active</a></li>
+                <li class="dropdown-item"><a href="/admin/product/category/changeStatusTool" data-action="set_to_inactive">Set to Inactive</a></li>
+                <li class="dropdown-item"><a href="/admin/product/category/changeStatusTool" data-action="set_to_delete">Set to Delete</a></li>
               </ul>
             </div>
             
@@ -126,3 +124,4 @@
       </div>
     </div>
   </section>
+  

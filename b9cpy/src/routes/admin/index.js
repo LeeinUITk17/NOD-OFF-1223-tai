@@ -18,11 +18,17 @@ router.use(async(req,res,next)=>{
     next();
 })
 
+router.use(async(req,res,next)=>{
+    res.locals.listcategoryProduct=await adminService.getAllcategoryProduct();
+    next();
+})
+
 router.use('/' , require('./dashboard'));
 router.use('/news' , require('./news'));
 router.use('/category',require('./category'));
 router.use('/setting',require('./setting'));
 router.use('/rss',require('./rss'));
 router.use('/product',require('./product'));
+router.use('/product/category',require('./product.category'));
 router.use('/contact',require('./contact'));
 module.exports = router;

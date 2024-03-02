@@ -1,7 +1,6 @@
 const { Schema } = require("mongoose");
-const mongoose = require("mongoose");
-
-const COLLECTION_NAME = "product";
+mongoose = require("mongoose");
+const COLLECTION_NAME = "category_product";
 
 const newSchema = new Schema(
   {
@@ -23,26 +22,12 @@ const newSchema = new Schema(
     avatar: {
       type: String,
     },
-    content:{
-      type: String,
-    },
     slug:{
       type: String,
     },
     special: {
       type: Boolean, 
-      default: false, 
-    },
-    price:{
-      type:Number,
-      default:0,
-    },
-    total:{
-      type:Number,
-      default:0,
-    },
-    category: {
-      type: String,
+      default: true, 
     },
   },
   {
