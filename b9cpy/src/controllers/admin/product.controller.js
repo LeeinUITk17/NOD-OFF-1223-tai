@@ -7,7 +7,7 @@ const {
   getItemById,
   updateItem,
   getStatusCounts,
-} = require("../../services/product.service");
+} = require("../../services/product.admin.service");
 const { imageHelper } = require("../../helper/news.helper");
 const { body, validationResult } = require("express-validator");
 const mainName = 'product';

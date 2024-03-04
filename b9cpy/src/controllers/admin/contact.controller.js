@@ -5,7 +5,7 @@ const {
     getItemById,
     updateItem,
     getStatusCounts,
-  } = require("../../services/contact.service");
+  } = require ("../../services/contact.service");
 class contactController {
     getForm = async ( req , res , next) => {
         let { id } = req.params;
@@ -16,6 +16,13 @@ class contactController {
       res.render("admin/contact", { data });
     }
     }
+    deleteItem = async (req, res, next) => {
+      let { id } = req.params;
+      await deleteItem(id);
+      req.flash("success", "Delete item thành công", false);
+      res.redirect(`/admin`);
+    };
+  
 }
 
 module.exports = new contactController();

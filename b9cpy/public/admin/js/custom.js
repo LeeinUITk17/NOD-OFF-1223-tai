@@ -200,3 +200,8 @@ document.addEventListener('DOMContentLoaded', function () {
       console.log('Editor content:', editorData);
   });
 });
+const highlightKeyword = (text, keyword) => {
+  const escapedKeyword = keyword.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+  const regex = new RegExp(escapedKeyword, 'gi');
+  return text.replace(regex, '<span class="highlight">$&</span>');
+};

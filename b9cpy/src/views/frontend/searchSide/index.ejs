@@ -6,6 +6,7 @@
     <div class="row masonry">
 
         <!-- brick-wrapper -->
+        <!-- bricks-wrapper -->
         <div class="bricks-wrapper">
 
             <div class="grid-sizer"></div>
@@ -25,11 +26,13 @@
 
                                 <div class="entry-meta">
                                     <span class="cat-links">
-                                        <a href="#"><%= item.name %></a>
+                                        <a href="#"><%- item.name %></a>
                                     </span>
                                 </div>
 
-                                <h1 class="entry-title"><a href="/news/<%= item._id %>"><%= item.description %></a></h1>
+                                <h1 class="entry-title">
+                                    <a href="/news/<%= item._id %>"><%- item.description %></a>
+                                </h1>
 
                             </div>
                         </div>
@@ -40,7 +43,7 @@
 
             <!-- format audio here -->
 
-        </div> <!-- end brick-wrapper -->
+        </div> <!-- end bricks-wrapper -->
 
     </div> <!-- end row -->
 

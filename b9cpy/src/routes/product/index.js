@@ -7,6 +7,16 @@ router.use((req, res, next) => {
     next();
 });
 
+router.use(async(req,res,next)=>{
+    res.locals.listproduct=await productService.getAllproduct();
+    next();
+})
+
+router.use(async(req,res,next)=>{
+    res.locals.listcategoryProduct=await productService.getAllcategoryProduct();
+    next();
+})
+
 router.use('/',require('./homepage'));
 router.use('/account',require('./account'));
 router.use('/cart',require('./cart'));

@@ -5,7 +5,7 @@ const categoryProductModel=require('../model/productCategory.model');
 class adminService {
  
   async getAllcontact(){
-    return await contactModel.find({status:'active'});
+    return await contactModel.find({});
   }
    
   async getAllcategory(){
