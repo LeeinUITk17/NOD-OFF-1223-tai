@@ -1,6 +1,7 @@
 
 const productModel=require('../model/product.model');
 const categoryProductModel=require('../model/productCategory.model');
+const settingModel=require('../model/setting.model');
 class productService {
  
   
@@ -9,7 +10,10 @@ class productService {
   }
 
   async getAllcategoryProduct(){
-    return await categoryProductModel.find({status:'active'});
+    return await categoryProductModel.find({});
+  }
+  async getAllsetting(){
+    return await settingModel.find({});
   }
 }
 

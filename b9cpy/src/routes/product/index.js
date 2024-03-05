@@ -13,15 +13,22 @@ router.use(async(req,res,next)=>{
 })
 
 router.use(async(req,res,next)=>{
-    res.locals.listcategoryProduct=await productService.getAllcategoryProduct();
+    res.locals.listcategoryproduct=await productService.getAllcategoryProduct();
     next();
 })
 
-router.use('/',require('./homepage'));
-router.use('/account',require('./account'));
+router.use(async(req,res,next)=>{
+    res.locals.listsetting=await productService.getAllsetting();
+    next();
+})
+
+router.use('/',require('./home'));
+router.use('/home',require('./home'));
 router.use('/cart',require('./cart'));
 router.use('/checkout',require('./checkout'));
-router.use('/details',require('./account'));
-router.use('/gridview',require('./gridview'));
-router.use('/listview',require('./listview'));
+router.use('/shop',require('./shop'));
+router.use('/service',require('./service'));
+router.use('/contact',require('./contact'));
+router.use('/about',require('./about'));
+router.use('/blog',require('./blog'));
 module.exports=router;
