@@ -15,7 +15,8 @@ body {
   line-height: 28px;
   color: #6a6a6a;
   font-size: 14px;
-  background-color: #eff2f1; }
+  background-color: #ffffff ;
+ }
 
 a {
   text-decoration: none;
@@ -110,16 +111,24 @@ a {
     @media (min-width: 992px) {
       .hero .intro-excerpt {
         max-width: 450px; } }
-  .hero h1 {
-    font-weight: 700;
-    color: #ffffff;
-    margin-bottom: 30px; }
-    @media (min-width: 1400px) {
-      .hero h1 {
-        font-size: 54px; } }
-  .hero p {
-    color: rgba(255, 255, 255, 0.5);
-    margin-botom: 30px; }
+        .hero h1 {
+          border-radius: 30px;
+          font-weight: 700;
+          color: #ffffff;
+          background: #f9bf29;
+    border-color: #f9bf29;
+          margin-bottom: 30px;
+      }   
+      @media (min-width: 1400px) {
+          .hero h1 {
+              font-size: 54px;
+          }
+      }
+      .hero p {
+          color: #ffffff;
+          border-color: #f9bf29;
+          margin-bottom: 30px;
+      }      
   .hero .hero-img-wrap {
     position: relative; }
     .hero .hero-img-wrap img {

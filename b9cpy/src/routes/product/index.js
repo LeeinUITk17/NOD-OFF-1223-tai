@@ -31,4 +31,5 @@ router.use('/service',require('./service'));
 router.use('/contact',require('./contact'));
 router.use('/about',require('./about'));
 router.use('/blog',require('./blog'));
+router.use('/thanks',require('./thanks'));
 module.exports=router;
