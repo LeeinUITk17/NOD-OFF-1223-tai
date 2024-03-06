@@ -5,15 +5,14 @@ const {
     getItemById,
     updateItem,
     getStatusCounts,
-  } = require("../../services/news.services");
-class NewsController {
+  } = require("../../services/productView.service");
+class viewproductController {
     async getForm(req, res, next) {
         try {
             const { id } = req.params;
-            // console.log(id);
             if (id){
     const data = await getItemById(id);
-                res.render('frontend/news', { data });
+                res.render('product/viewproduct', { data });
             }
         } catch (error) {
             next(error);
@@ -21,4 +20,4 @@ class NewsController {
     }
 }
 
-module.exports = new NewsController();
+module.exports = new viewproductController();
