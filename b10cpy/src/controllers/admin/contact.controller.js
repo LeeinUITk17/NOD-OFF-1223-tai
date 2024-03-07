@@ -22,7 +22,7 @@ class contactController {
       req.flash("success", "Delete item thành công", false);
       res.redirect(`/admin`);
     };
-  
+   
 }
 
 module.exports = new contactController();

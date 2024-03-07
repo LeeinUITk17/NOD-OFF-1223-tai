@@ -2,6 +2,7 @@
 const productModel=require('../model/product.model');
 const categoryProductModel=require('../model/productCategory.model');
 const settingModel=require('../model/setting.model');
+const newsModel=require('../model/news.model');
 class productService {
  
   
@@ -14,6 +15,9 @@ class productService {
   }
   async getAllsetting(){
     return await settingModel.find({});
+  }
+  async getAllnews(){
+    return await newsModel.find({}).sort({ordering:1});
   }
 }
 

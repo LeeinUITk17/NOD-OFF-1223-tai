@@ -36,6 +36,10 @@ const newSchema = new Schema(
     category: {
       type: String,
     },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+  },
   },
   {
     timestamps: true,

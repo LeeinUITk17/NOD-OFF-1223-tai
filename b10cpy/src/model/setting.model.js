@@ -15,6 +15,10 @@ const newSchema = new Schema(
     avatar: {
         type: String,
       },
+      createdAt: {
+        type: Date,
+        default: Date.now,
+    },
   },
   {
     timestamps: true,

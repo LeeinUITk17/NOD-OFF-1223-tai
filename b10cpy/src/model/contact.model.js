@@ -18,6 +18,19 @@ const newSchema = new Schema(
     Message:{
       type: String,
     },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+  },
+  place:{
+    type:String,
+    default: "news",
+    enum: ["news", "shop"],
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+},
   },
   {
     timestamps: true,
