@@ -1,3 +1,5 @@
+// helper/jwt.helper.js
+
 const jwt = require('jsonwebtoken');
 
 const generateToken = (userId, username, productIds) => {
@@ -18,6 +20,19 @@ const generateToken = (userId, username, productIds) => {
   return token;
 };
 
+const verifyToken = (token) => {
+    const secretKey = 'cnttvietnhatk17';
+  
+    try {
+      const decoded = jwt.verify(token, secretKey);
+      return decoded;
+    } catch (error) {
+      console.error('JWT Verification Error:', error);
+      return null;
+    }
+};
+
 module.exports = {
   generateToken,
+  verifyToken,
 };
