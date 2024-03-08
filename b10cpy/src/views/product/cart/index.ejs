@@ -21,53 +21,56 @@
                       </thead>
                       <tbody>
                         <%
-                          const itemQuantities = {}; 
-                          data.forEach((item) => {
+                        const itemQuantities = {};
+                        let subtotal = 0; 
+                        
+                        data.forEach((item) => {
                             const itemId = item._id.toString();
                             itemQuantities[itemId] ? itemQuantities[itemId]++ : itemQuantities[itemId] = 1;
-                          });            
-                        %>
-
-                        <%
-                          const renderedIds = new Set();
-
-                          data.forEach((item) => {
+                        });
+                        
+                        const renderedIds = new Set();
+                        
+                        data.forEach((item) => {
                             const itemId = item._id.toString();
                             if (!renderedIds.has(itemId)) {
-                              renderedIds.add(itemId);
+                                renderedIds.add(itemId);
+                                subtotal += item.price * (itemQuantities[itemId] || 0); 
                         %>
-                           <tr>
+                        <tr>
                             <td class="product-thumbnail">
-                              <img src="/<%= item.avatar %>" alt="Image" class="img-fluid">
+                                <img src="/<%= item.avatar %>" alt="Image" class="img-fluid">
                             </td>
                             <td class="product-name">
-                              <h2 class="h5 text-black"><%= item.name %></h2>
+                                <h2 class="h5 text-black"><%= item.name %></h2>
                             </td>
                             <td>$<%= item.price %></td>
                             <td>
-                              <div class="input-group mb-3 d-flex align-items-center quantity-container" style="max-width: 150px;">
-                                <div class="input-group-prepend">
-                                  <button class="btn btn-outline-black decrease" type="button">&minus;</button>
+                                <div class="input-group mb-3 d-flex align-items-center quantity-container"
+                                    style="max-width: 150px;">
+                                    <div class="input-group-prepend">
+                                        <button class="btn btn-outline-black decrease" type="button">&minus;</button>
+                                    </div>
+                                    <input type="text"
+                                        class="form-control text-center quantity-amount"
+                                        value="<%= itemQuantities[itemId] || 0 %>" placeholder=""
+                                        aria-label="Example text with button addon" aria-describedby="button-addon1">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-black increase" type="button">&plus;</button>
+                                    </div>
                                 </div>
-                                <input type="text" class="form-control text-center quantity-amount" value="<%= itemQuantities[itemId] || 0 %>" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
-                                <div class="input-group-append">
-                                  <button class="btn btn-outline-black increase" type="button">&plus;</button>
-                                </div>
-                              </div>
                             </td>
                             <td>$<%= item.price * (itemQuantities[itemId] || 0) %></td>
                             <td>
-                              <a href="#" class="btn btn-black btn-sm remove-item">Remove</a>
+                                <a href="/shop/cart/remove/<%= item._id%>" class="btn btn-black btn-sm remove-item">Remove</a>
                             </td>
-                          </tr>
+                        </tr>
                         <%
                             }
-                          });
+                        });
                         %>
-
-                        
-                      </tbody>
-                      
+                    </tbody>
+                        </table>
                   </table>
               </div>
             </form>
@@ -76,9 +79,6 @@
           <div class="row">
             <div class="col-md-6">
               <div class="row mb-5">
-                <div class="col-md-6 mb-3 mb-md-0">
-                  <button class="btn btn-black btn-sm btn-block">Remove all</button>
-                </div>
                 <div class="col-md-6">
                  <a href="/shop/shop"> <button  class="btn btn-outline-black btn-sm btn-block">Continue Shopping</button></a>
                 </div>
@@ -105,21 +105,21 @@
                     </div>
                   </div>
                   <div class="row mb-3">
-                    <div class="col-md-6">
-                      <span class="text-black">Subtotal</span>
-                    </div>
-                    <div class="col-md-6 text-right">
-                      <strong class="text-black">$230.00</strong>
-                    </div>
-                  </div>
-                  <div class="row mb-5">
-                    <div class="col-md-6">
-                      <span class="text-black">Total</span>
-                    </div>
-                    <div class="col-md-6 text-right">
-                      <strong class="text-black">$230.00</strong>
-                    </div>
-                  </div>
+    <div class="col-md-6">
+        <span class="text-black">Subtotal</span>
+    </div>
+    <div class="col-md-6 text-right">
+        <strong class="text-black">$<%= subtotal.toFixed(2) %></strong>
+    </div>
+</div>
+<div class="row mb-5">
+    <div class="col-md-6">
+        <span class="text-black">Total</span>
+    </div>
+    <div class="col-md-6 text-right">
+        <strong class="text-black">$<%= subtotal.toFixed(2) %></strong>
+    </div>
+</div>
     
                   <div class="row">
                     <div class="col-md-12">

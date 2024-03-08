@@ -1,5 +1,3 @@
-// helper/jwt.helper.js
-
 const jwt = require('jsonwebtoken');
 
 const generateToken = (userId, username, productIds) => {
@@ -11,8 +9,11 @@ const generateToken = (userId, username, productIds) => {
     productIds
   };
 
+  // Set expiration time to 1 hour from now
+  const expirationTime = Math.floor(Date.now() / 1000) + 7200;
+
   const options = {
-    expiresIn: '1h'
+    expiresIn: expirationTime
   };
 
   const token = jwt.sign(payload, secretKey, options);
