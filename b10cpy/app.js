@@ -9,6 +9,7 @@ const session = require("express-session");
 var expressLayouts = require("express-ejs-layouts");
 const { connect } = require("./src/config/db");
 
+
 var app = express();
 connect();
 

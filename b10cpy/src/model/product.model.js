@@ -37,9 +37,9 @@ const newSchema = new Schema(
       type:Number,
       default:0,
     },
-    total:{
+    quantity:{
       type:Number,
-      default:0,
+      default:25,
     },
     category: {
       type: String,

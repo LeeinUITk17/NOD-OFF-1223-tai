@@ -12,10 +12,13 @@
          <p><%- data.content%></p>
           <ul class="list-unstyled custom-list my-4">
             <li>Category: <%= data.category%></li>
-            <li>Total: <%= data.total%></li>
+            <li>Quantity: <%= data.quantity%></li>
           </ul>
           <h3>$<%= data.price%></h3>
-          <p><a  href="/shop/cart" class="btn nav-link">Add to Cart</a></p>
+          <form action="/shop/cart/add" method="post">
+                <input type="hidden" name="id" value="<%= data._id %>">
+                <button type="submit" class="btn nav-link">Add to Cart</button>
+            </form>            
                         </div>
                     </div>
                 </div>
