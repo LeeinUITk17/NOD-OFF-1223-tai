@@ -20,8 +20,23 @@
                           </tr>
                       </thead>
                       <tbody>
-                        <% data.forEach((item) => { %>
-                          <tr>
+                        <%
+                          const itemQuantities = {}; 
+                          data.forEach((item) => {
+                            const itemId = item._id.toString();
+                            itemQuantities[itemId] ? itemQuantities[itemId]++ : itemQuantities[itemId] = 1;
+                          });            
+                        %>
+
+                        <%
+                          const renderedIds = new Set();
+
+                          data.forEach((item) => {
+                            const itemId = item._id.toString();
+                            if (!renderedIds.has(itemId)) {
+                              renderedIds.add(itemId);
+                        %>
+                           <tr>
                             <td class="product-thumbnail">
                               <img src="/<%= item.avatar %>" alt="Image" class="img-fluid">
                             </td>
@@ -30,22 +45,27 @@
                             </td>
                             <td>$<%= item.price %></td>
                             <td>
-                              <div class="input-group mb-3 d-flex align-items-center quantity-container" style="max-width: 120px;">
+                              <div class="input-group mb-3 d-flex align-items-center quantity-container" style="max-width: 150px;">
                                 <div class="input-group-prepend">
                                   <button class="btn btn-outline-black decrease" type="button">&minus;</button>
                                 </div>
-                                <input type="text" class="form-control text-center quantity-amount" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                                <input type="text" class="form-control text-center quantity-amount" value="<%= itemQuantities[itemId] || 0 %>" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
                                 <div class="input-group-append">
                                   <button class="btn btn-outline-black increase" type="button">&plus;</button>
                                 </div>
                               </div>
                             </td>
-                            <td>$<%= item.price %></td>
+                            <td>$<%= item.price * (itemQuantities[itemId] || 0) %></td>
                             <td>
                               <a href="#" class="btn btn-black btn-sm remove-item">Remove</a>
                             </td>
                           </tr>
-                        <% }); %>
+                        <%
+                            }
+                          });
+                        %>
+
+                        
                       </tbody>
                       
                   </table>
@@ -57,10 +77,10 @@
             <div class="col-md-6">
               <div class="row mb-5">
                 <div class="col-md-6 mb-3 mb-md-0">
-                  <button class="btn btn-black btn-sm btn-block">Update Cart</button>
+                  <button class="btn btn-black btn-sm btn-block">Remove all</button>
                 </div>
                 <div class="col-md-6">
-                  <button class="btn btn-outline-black btn-sm btn-block">Continue Shopping</button>
+                 <a href="/shop/shop"> <button  class="btn btn-outline-black btn-sm btn-block">Continue Shopping</button></a>
                 </div>
               </div>
               <div class="row">
