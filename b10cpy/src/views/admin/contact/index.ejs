@@ -1,42 +1,114 @@
-<div class="col-md-9">
-    <div class="card card-primary card-outline">
+<div class="card card-primary card-outline">
+  <div class="card-header">
+  <h3 class="card-title">News Inbox</h3>
+  <div class="card-tools">
+  <div class="input-group input-group-sm">
+  <input type="text" class="form-control" placeholder="Search Mail">
+  <div class="input-group-append">
+  <div class="btn btn-primary">
+  <i class="fas fa-search"></i>
+  </div>
+  </div>
+  </div>
+  </div>
+  
+  </div>
+  
+  <div class="card-body p-0">
+  <div class="table-responsive mailbox-messages">
+  <table class="table table-hover table-striped">
+  <tbody>
+    <%
+      data.forEach((item) => {
+        if (item.place === 'news') {
+    %>
+          <tr>
+            <td class="project-state" id="status-<%= item.id %>">
+              <a href="/changeStatus/<%= item.id %>/<%= item.status %>" onclick="handleUpdateStatus('<%= item.id %>', '<%= item.status %>',''); return false;">
+                <span class="badge <%= item.status === 'active' ? 'badge-success' : 'badge-danger' %>"><%= item.status %></span>
+              </a>
+            </td>
+            <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>
+            <td class="mailbox-name"><a href="/admin/contact/form/<%= item._id%>"><%= item.Name%></a></td>
+            <td class="mailbox-subject"><b><%= item.Email%></b> - Trying to find a solution to this problem...</td>
+            <td class="mailbox-attachment"></td>
+            <td>
+              <a class="btn btn-danger btn-delete btn-sm" href="javascript:handleDelete('/admin/delete/<%= item.id %>')">
+                <i class="fas fa-trash"></i>
+                Delete
+              </a>
+            </td>
+          </tr>
+    <%
+        }
+      });
+    %>
+    
+   
+  </tbody>
+  </table>
+  
+  </div>
+  
+  </div>
+  
+  <div class="card-footer p-0">
+  </div>
+  </div>
+  <div class="card card-primary card-outline">
     <div class="card-header">
-    <h3 class="card-title">Read Mail</h3>
+    <h3 class="card-title">Store InBox</h3>
     <div class="card-tools">
-    <a href="#" class="btn btn-tool" title="Previous"><i class="fas fa-chevron-left"></i></a>
-    <a href="#" class="btn btn-tool" title="Next"><i class="fas fa-chevron-right"></i></a>
+    <div class="input-group input-group-sm">
+    <input type="text" class="form-control" placeholder="Search Mail">
+    <div class="input-group-append">
+    <div class="btn btn-primary">
+    <i class="fas fa-search"></i>
     </div>
     </div>
+    </div>
+    </div>
+    
+    </div>
+    
+    <div class="card-body p-0">
+    <div class="table-responsive mailbox-messages">
+    <table class="table table-hover table-striped">
+    <tbody>
+      <%
+      data.forEach((item) => {
+        if (item.place === 'shop') {
+    %>
+          <tr>
+            <td class="project-state" id="status-<%= item.id %>">
+              <a href="/changeStatus/<%= item.id %>/<%= item.status %>" onclick="handleUpdateStatus('<%= item.id %>', '<%= item.status %>',''); return false;">
+                <span class="badge <%= item.status === 'active' ? 'badge-success' : 'badge-danger' %>"><%= item.status %></span>
+              </a>
+            </td>
+            <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>
+            <td class="mailbox-name"><a href="/admin/contact/form/<%= item._id%>"><%= item.Name%></a></td>
+            <td class="mailbox-subject"><b><%= item.Email%></b> - Trying to find a solution to this problem...</td>
+            <td class="mailbox-attachment"></td>
+            <td>
+              <a class="btn btn-danger btn-delete btn-sm" href="javascript:handleDelete('/admin/delete/<%= item.id %>')">
+                <i class="fas fa-trash"></i>
+                Delete
+              </a>
+            </td>
+          </tr>
+    <%
+        }
+      });
+    %>
     
    
-
-        <div class="card-body p-0">
-          <div class="mailbox-read-info">
-          <h6>From: <%= data.Email%>
-          <span class="mailbox-read-time float-right"><%= data.createdAt.toISOString().split('T')[0] %></span></h6>
-          </div>
-          
-          
-          <div class="mailbox-read-message">
-          <p>By: <%= data.Name%>,</p>
-          <p><%= data.Message%></p>
-          </div>
-          
-          </div>
-      
+    </tbody>
+    </table>
     
-   
-    
-    <div class="card-footer">
-    <div class="float-right">
-    <button type="button" class="btn btn-default"><i class="fas fa-reply"></i> Reply</button>
-    <button type="button" class="btn btn-default"><i class="fas fa-share"></i> Forward</button>
-    </div>
-    <script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
-    <button onclick="handleDelete('/admin/delete/<%= data.id %>')" type="button" class="btn btn-default"><i class="far fa-trash-alt"></i> Delete</button>
-    <button type="button" class="btn btn-default"><i class="fas fa-print"></i> Print</button>
     </div>
     
     </div>
     
+    <div class="card-footer p-0">
+    </div>
     </div>

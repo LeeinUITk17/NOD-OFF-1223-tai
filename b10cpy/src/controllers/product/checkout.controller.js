@@ -1,6 +1,9 @@
+
 class checkoutController {
     getAll = async (req, res, next) => {
-        res.render('product/checkout');
+      // const productsData=JSON.parse(req.body.productsData);
+      // console.log(productsData);
+      res.render('product/checkout');
     }
 }
 
