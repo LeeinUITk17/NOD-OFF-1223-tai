@@ -8,7 +8,11 @@ const {
   } = require("../../services/productView.service");
   const jwt = require('jsonwebtoken');
   const jwtHelper = require('../../helper/jwt.helper');
-const { generateToken } = jwtHelper;
+const {  generateToken,
+    verifyToken,
+    increaseQuantity,
+    decreaseQuantity,
+    updateCart, } = jwtHelper;
 
 class cartController {
     getAll = async (req, res, next) => {
@@ -116,7 +120,6 @@ class cartController {
             return res.status(500).send('Internal Server Error');
         }
     };
-    
 }
 
 module.exports = new cartController();
