@@ -33,4 +33,5 @@ router.use('/product/category',require('./product.category'));
 router.use('/contact',require('./contact'));
 router.use('/address',require('./address'));
 router.use('/coupon',require('./coupon'));
+router.use('/bill',require('./bill'));
 module.exports = router;

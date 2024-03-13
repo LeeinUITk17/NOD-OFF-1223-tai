@@ -1,13 +1,6 @@
 const mongoose = require("mongoose");
-const couponModel = require("../model/coupon.model");
-const randomstring=require('randomstring');
-const addItem = async (body) => {
-  if(body.expirate< Date()){
-    body.expirate= Date()+1;
-  }
-    body.code=randomstring.generate(10);
-  await couponModel.create(body);
-};
+const slugify=require("slugify");
+const billModel = require("../model/bill.model");
 const getItems = async (status, keyword) => {
   let query = {};
   if (status === 'all') {
@@ -20,25 +13,25 @@ const getItems = async (status, keyword) => {
       { code: new RegExp(keyword, 'i') },
     ];
   }
-  return await couponModel.find(query);
+  return await billModel.find(query);
 };
 
 const getItemById = async (id) => {
-  return await couponModel.findById(id).exec();
+  return await billModel.findById(id).exec();
 };
 
 const deleteItem = async (id) => {
-  return await couponModel.deleteOne({ _id: new mongoose.Types.ObjectId(id) });
+  return await billModel.deleteOne({ _id: new mongoose.Types.ObjectId(id) });
 };
 
 const updateItem = async (id, body) => {
-  await couponModel.findByIdAndUpdate(
+  await billModel.findByIdAndUpdate(
     { _id: new mongoose.Types.ObjectId(id) },
     { $set: body }
   );
 };
 const getStatusCounts = async () => {
-  const items = await couponModel.find({});
+  const items = await billModel.find({});
   const statusCounts = {
     All: items.length,
     Active: items.filter((item) => item.status === 'active').length,
@@ -47,7 +40,6 @@ const getStatusCounts = async () => {
   return statusCounts;
 };
 module.exports = {
-  addItem,
   getItems,
   deleteItem,
   getItemById,

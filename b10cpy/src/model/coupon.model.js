@@ -12,8 +12,8 @@ const newSchema = new Schema(
       enum: ["active", "inactive"]
     },
     expirate:{
-        type:Date,
-    },
+        type:Date
+        },
    
     createdAt: {
       type: Date,

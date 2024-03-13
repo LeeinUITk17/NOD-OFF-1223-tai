@@ -3,7 +3,7 @@
     <div class="card">
       <div class="card-header">
         <div class="card-tools">
-          <a href="/admin/coupon/form">
+          <a href="/admin/bill/form">
             <button link type="button" class="btn btn-block btn-primary">Add new</button>
           </a>
   
@@ -59,12 +59,10 @@
              <th style="width: 10%" ><input type="checkbox" id="selectAllCheckbox">Select all</th>
               <th style="width: 8%" >ID</th>
               <th style="width: 8%">Code</th>
+              <th style="width: 8%">Name</th>
+              <th style="width: 8%">Coupon</th>
               <th style="width: 8%">CreateAt</th>
-              <th style="width: 8%">Expirate</th>
-              <th style="width: 8%">Ordering</th>
-              <th style="width: 8%">Value</th>
-              <th style="width: 8%">Minimum</th>
-              <th style="width: 8%" class="text-center">Discount</th>
+              <th style="width: 8%">Total</th>
               <th style="width: 8%" class="text-center">Status</th>
             </tr>
           </thead>
@@ -76,27 +74,19 @@
                     <td><input type="checkbox" name="selectedItems" value="<%= item.id %>"></td>
                     <td><%= index + 1 %></td>
                     <td><%= item.code%></td>
+                    <td><%= item.receiverSchema.name%></td>
+                    <td><%= item.coupon%></td>
                     <td><%= item.createdAt.toISOString().split('T')[0] %></td>
-                    <td><%= item.expirate.toISOString().split('T')[0] %></td>
-                    <td><%= item.ordering %></td>
-                    <td>$<%= item.value %></td>   
-                    <td>$<%= item.minimum %></td>   
-                    <td class="project-state">  
-                          <span class="badge <%= item.discount === 'percent' ? 'badge-success' : 'badge-danger' %>"><%= item.discount %></span>                       
-                      </td>           
+                    <td>$<%= item.total %></td>            
                     <td class="project-state" id="status-<%= item.id %>">
-                      <a href="/changeStatus/<%= item.id %>/<%= item.status %>" onclick="handleUpdateStatus('<%= item.id %>', '<%= item.status %>','coupon'); return false;">
+                      <a href="/changeStatus/<%= item.id %>/<%= item.status %>" onclick="handleUpdateStatus('<%= item.id %>', '<%= item.status %>','bill'); return false;">
                         <span class="badge <%= item.status === 'active' ? 'badge-success' : 'badge-danger' %>"><%= item.status %></span>
                       </a>
                     </td>
                     <td class="project-actions text-right text-center">
-                      <a class="btn btn-info btn-sm" href="/admin/coupon/form/<%= item.id %>">
+                      <a class="btn btn-info btn-sm" href="/admin/bill/form/<%= item.id %>">
                         <i class="fas fa-pencil-alt"> </i>
-                        Edit
-                      </a>
-                      <a class="btn btn-danger btn-delete btn-sm" href="javascript:handleDelete('/admin/coupon/delete/<%= item.id %>')">
-                        <i class="fas fa-trash"> </i>
-                        Delete
+                        View All
                       </a>
                     </td>
                   </tr>
@@ -113,9 +103,9 @@
                 Action
               </button>
               <ul class="dropdown-menu">
-                <li class="dropdown-item"><a href="/admin/coupon/changeStatusTool" data-action="set_to_active">Set to Active</a></li>
-                <li class="dropdown-item"><a href="/admin/coupon/changeStatusTool" data-action="set_to_inactive">Set to Inactive</a></li>
-                <li class="dropdown-item"><a href="/admin/coupon/changeStatusTool" data-action="set_to_delete">Set to Delete</a></li>
+                <li class="dropdown-item"><a href="/admin/bill/changeStatusTool" data-action="set_to_active">Set to Active</a></li>
+                <li class="dropdown-item"><a href="/admin/bill/changeStatusTool" data-action="set_to_inactive">Set to Inactive</a></li>
+                <li class="dropdown-item"><a href="/admin/bill/changeStatusTool" data-action="set_to_delete">Set to Delete</a></li>
               </ul>
             </div>
             

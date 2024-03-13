@@ -28,9 +28,6 @@ const newSchema = new Schema(
       default: "inactive",
       enum: ["active", "inactive"]
     },
-    slug: {
-      type: String
-    },
     code: {
       type: String
     },
@@ -45,7 +42,8 @@ const newSchema = new Schema(
       default: Date.now
     },
     coupon: {
-      type: String
+      type: String,
+      default:"none",
     }
   },
   {
