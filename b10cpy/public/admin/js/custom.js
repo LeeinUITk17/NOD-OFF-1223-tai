@@ -205,3 +205,16 @@ const highlightKeyword = (text, keyword) => {
   const regex = new RegExp(escapedKeyword, 'gi');
   return text.replace(regex, '<span class="highlight">$&</span>');
 };
+
+function calculateExpiryDate() {
+  var createDate = new Date("<%= item.createAt %>");
+  var daysToAdd = parseInt(document.getElementById('expirateDays').value);
+  var expiryDate = new Date(createDate.getTime() + daysToAdd * 24 * 60 * 60 * 1000);
+  var formattedExpiryDate = expiryDate.toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' });
+  document.getElementById('calculatedExpiryDate').value = formattedExpiryDate;
+}
+
+// Event listener for input change
+document.getElementById('expirateDays').addEventListener('input', function() {
+  calculateExpiryDate();
+});

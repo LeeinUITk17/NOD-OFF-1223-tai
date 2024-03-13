@@ -5,7 +5,7 @@ const COLLECTION_NAME = "deliveryAddress";
 
 const newSchema = new Schema(
   {
-    Name: {
+    name: {
       type: String,
       required: true,
     },

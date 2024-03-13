@@ -31,4 +31,6 @@ router.use('/rss',require('./rss'));
 router.use('/product',require('./product'));
 router.use('/product/category',require('./product.category'));
 router.use('/contact',require('./contact'));
+router.use('/address',require('./address'));
+router.use('/coupon',require('./coupon'));
 module.exports = router;

@@ -1,5 +1,4 @@
-const multer = require('multer');
-const path=require('path');
+
 const {
   addItem,
   getItems,
@@ -7,17 +6,14 @@ const {
   getItemById,
   updateItem,
   getStatusCounts,
-} = require("../../services/news.services");
-const { imageHelper } = require("../../helper/news.helper");
-const { body, validationResult } = require("express-validator");
-const mainName = 'news';
+} = require("../../services/address.service");
+const mainName = 'address';
 const linkprefix = `/admin/${mainName}/`;
-var express = require("express");
-var router = express.Router();
 
 
 
-class NewsController {
+
+class addressController {
 
   getAll = async (req, res, next) => {
     let { status } = req.params;
@@ -33,35 +29,23 @@ class NewsController {
     }
     data.sort((a, b) => a.ordering - b.ordering);
 
-    res.render("admin/news", { data, statusfilter: this.getStatusFilter(statusCounts, status), keyword, linkprefix });
+    res.render("admin/address", { data, statusfilter: this.getStatusFilter(statusCounts, status), keyword, linkprefix });
 };
 
 
   getForm = async (req, res, next) => {
     let { id } = req.params;
     if (id == "") {
-      res.render("admin/news/form");
+      res.render("admin/address/form");
     } else {
       let data = await getItemById(id);
-      res.render("admin/news/form", { data });
+      res.render("admin/address/form", { data });
     }
   };
 
   addOrUpdateItem = async (req, res) => {
     const { id } = req.body;
-    let errors = validationResult(req);
-    console.log(errors);
-    let listError = errors.errors;
-  
-    if (listError.length > 0) {
-      let messages = [];
-      listError.map((error) => messages.push(error.msg));
-      req.flash("danger", messages, false);
-      return id
-        ? res.redirect(`${linkprefix}form/${id}`)
-        : res.redirect(`${linkprefix}form/`);
-    }
-  
+   
     try {
       if (id) {
         await updateItem(id, req.body);
@@ -79,30 +63,6 @@ class NewsController {
   };
   
   
-  imageUpload = async (req, res, next) => {
-    const { id } = req.params;
-  
-    if (!id) {
-      req.flash("danger", "Invalid operation", false);
-      return res.redirect(`${linkprefix}all`);
-    }
-  
-    imageHelper(req, res, async (err) => {
-      try {
-        const filePath = path.join(req.file.filename);
-        req.body.file = filePath;
-  
-        await updateItem(id, { avatar: filePath });
-  
-        req.flash("success", "Update image thành công", false);
-        res.redirect(`${linkprefix}all`);
-      } catch (error) {
-        console.error('Error processing form:', error);
-        req.flash("danger", "An error occurred", false);
-        res.redirect(`${linkprefix}all`);
-      }
-    });
-  };
   
 
   deleteItem = async (req, res, next) => {
@@ -173,9 +133,9 @@ console.log(status);
   updateStatus = async (req, res, next) => {
     try {
       const { id, status } = req.params;
-      const newStatus = status === 'active' ? 'inactive' : 'active';
-      await updateItem(id, { status: newStatus });
-      res.status(200).json({ message: 'Successfully updated status', id, status: newStatus });
+      const addresstatus = status === 'active' ? 'inactive' : 'active';
+      await updateItem(id, { status: addresstatus });
+      res.status(200).json({ message: 'Successfully updated status', id, status: addresstatus });
     } catch (error) {
       console.error("Error during status update:", error);
       res.status(500).json({ error: 'Internal Server Error' });
@@ -185,14 +145,14 @@ console.log(status);
 
 statusTool = async (req, res, next) => {
   const { action, selectedItems } = req.body;
-  let newStatus;
+  let addresstatus;
   
   switch (action) {
     case 'set_to_active':
-      newStatus = 'active';
+      addresstatus = 'active';
       break;
     case 'set_to_inactive':
-      newStatus = 'inactive';
+      addresstatus = 'inactive';
       break;
     case 'set_to_delete':
       for (const itemId of selectedItems) {
@@ -205,9 +165,9 @@ statusTool = async (req, res, next) => {
       return res.status(400).json({ error: 'Invalid action' });
   }
 
-  if (newStatus && (newStatus === 'active' || newStatus === 'inactive')) {
+  if (addresstatus && (addresstatus === 'active' || addresstatus === 'inactive')) {
     for (const itemId of selectedItems) {
-      await updateItem(itemId, { status: newStatus });
+      await updateItem(itemId, { status: addresstatus });
     }
     // setFlashMessage(req, 'success', 'Update item thành công');
     res.json({ success: true });
@@ -221,4 +181,4 @@ statusTool = async (req, res, next) => {
 }
 
 
-module.exports = new NewsController();
+module.exports = new addressController();
