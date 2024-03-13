@@ -25,6 +25,11 @@ router.use(async(req,res,next)=>{
     res.locals.listnews=await productService.getAllnews();
     next();
 })
+ router.use(async(req,res,next)=>{
+    res.locals.listaddress=await productService.getAlladdress();
+    next();
+ })
+
 
 router.use('/',require('./home'));
 router.use('/home',require('./home'));

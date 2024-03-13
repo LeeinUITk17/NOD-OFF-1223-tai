@@ -2,7 +2,6 @@ const express = require('express');
 const { route } = require('../items');
 const router = express.Router();
 const adminService=require('../../services/admin.service');
-
 router.use((req,res,next)=>{
     res.locals.layout='admin';
     next();
@@ -22,6 +21,7 @@ router.use(async(req,res,next)=>{
     res.locals.listcategoryProduct=await adminService.getAllcategoryProduct();
     next();
 })
+
 
 router.use('/' , require('./dashboard'));
 router.use('/news' , require('./news'));
