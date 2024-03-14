@@ -22,7 +22,6 @@ router.use(async(req,res,next)=>{
     next();
 })
 
-
 router.use('/' , require('./dashboard'));
 router.use('/news' , require('./news'));
 router.use('/category',require('./category'));

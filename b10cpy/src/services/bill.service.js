@@ -1,6 +1,11 @@
 const mongoose = require("mongoose");
 const slugify=require("slugify");
 const billModel = require("../model/bill.model");
+const randomstring=require('randomstring');
+const addItem = async (body) => {
+  body.code=randomstring.generate(10);
+  await billModel.create(body);
+};
 const getItems = async (status, keyword) => {
   let query = {};
   if (status === 'all') {
@@ -45,4 +50,5 @@ module.exports = {
   getItemById,
   updateItem,
   getStatusCounts,
+  addItem,
 };

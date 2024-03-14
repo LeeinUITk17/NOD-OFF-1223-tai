@@ -5,11 +5,11 @@ const {
   getItemById,
   updateItem,
   getStatusCounts,
+  addItem,
 } = require("../../services/bill.service");
 const mainName = 'bill';
 const linkprefix = `/admin/${mainName}/`;
 class billController {
-
   getAll = async (req, res, next) => {
     let { status } = req.params;
     let keyword = req.query.keywords;
@@ -30,12 +30,8 @@ class billController {
 
   getForm = async (req, res, next) => {
     let { id } = req.params;
-    if (id == "") {
-      res.render("admin/bill/form");
-    } else {
       let data = await getItemById(id);
       res.render("admin/bill/form", { data });
-    }
   };
 
  

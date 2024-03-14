@@ -1,14 +1,6 @@
 <section class="content">
     <%- locals.flash %>
     <div class="card">
-      <div class="card-header">
-        <div class="card-tools">
-          <a href="/admin/bill/form">
-            <button link type="button" class="btn btn-block btn-primary">Add new</button>
-          </a>
-  
-        </div>
-      </div>
       <div class="row">
         <div class="col-md-8 offset-md-2">
           <form action="" method="get">
@@ -74,7 +66,7 @@
                     <td><input type="checkbox" name="selectedItems" value="<%= item.id %>"></td>
                     <td><%= index + 1 %></td>
                     <td><%= item.code%></td>
-                    <td><%= item.receiverSchema.name%></td>
+                    <td><%= item.receiver[0].name%></td>
                     <td><%= item.coupon%></td>
                     <td><%= item.createdAt.toISOString().split('T')[0] %></td>
                     <td>$<%= item.total %></td>            

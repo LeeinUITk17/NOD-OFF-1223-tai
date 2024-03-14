@@ -21,7 +21,8 @@ const productSchema = new Schema({
 const newSchema = new Schema(
   {
     list: {
-      type: [productSchema] 
+      type: [productSchema] ,
+      default:[],
     },
     status: {
       type: String,
@@ -35,7 +36,8 @@ const newSchema = new Schema(
       type: Number
     },
     receiver: {
-      type: [receiverSchema] 
+      type: [receiverSchema] ,
+      default:[],
     },
     createdAt: {
       type: Date,

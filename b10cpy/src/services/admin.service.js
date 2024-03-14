@@ -2,6 +2,7 @@
 const contactModel=require('../model/contact.model');
 const categoryModel=require('../model/category.model');
 const categoryProductModel=require('../model/productCategory.model');
+const settingModel = require('../model/setting.model');
 class adminService {
  
   async getAllcontact(){
