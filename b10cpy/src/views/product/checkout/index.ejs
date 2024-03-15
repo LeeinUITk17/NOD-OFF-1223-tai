@@ -93,7 +93,7 @@
                   
                   const renderedIds = new Set();
                   
-                  data.forEach((item) => {
+                  data.forEach((item,index) => {
                       const itemId = item._id.toString();
                       if (!renderedIds.has(itemId)) {
                           renderedIds.add(itemId);
@@ -103,14 +103,13 @@
                     <td><%= item.name %><strong class="mx-2">x</strong><%= itemQuantities[itemId] || 0 %></td>
                     <td><%= item.price%></td>
                   </tr>
+                  <input type="hidden" name="list[<%= index %>][id]" value="<%= item._id %>">
+  <input type="hidden" name="list[<%= index %>][quantity]" value="<%= itemQuantities[item._id.toString()] || 0 %>">
+  <input type="hidden" name="list[<%= index %>][price]" value="<%= item.price %>">
                   <% }
                   });
                   %>
-                  <% data.forEach((item, index) => { %>
-  <input type="hidden" name="list[<%= index %>][id]" value="<%= item._id %>">
-  <input type="hidden" name="list[<%= index %>][quantity]" value="<%= itemQuantities[item._id.toString()] || 0 %>">
-  <input type="hidden" name="list[<%= index %>][price]" value="<%= item.price %>">
-<% }); %>
+                
                   <tr>
                     <td class="text-black font-weight-bold"><strong>Cart Subtotal</strong></td>
                     <td class="text-black">$<%= subtotal.toFixed(2) %></td>

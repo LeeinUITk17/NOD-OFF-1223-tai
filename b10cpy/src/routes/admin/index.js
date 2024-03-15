@@ -21,6 +21,10 @@ router.use(async(req,res,next)=>{
     res.locals.listcategoryProduct=await adminService.getAllcategoryProduct();
     next();
 })
+router.use(async(req,res,next)=>{
+    res.locals.listsetting=await adminService.getSetting();
+    next();
+})
 
 router.use('/' , require('./dashboard'));
 router.use('/news' , require('./news'));

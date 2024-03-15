@@ -16,6 +16,9 @@ class adminService {
   async getAllcategoryProduct(){
     return await categoryProductModel.find({special:false}).select('name');
   }
+  async getSetting(){
+    return await settingModel.find({});
+  }
 }
 
 module.exports = new adminService();

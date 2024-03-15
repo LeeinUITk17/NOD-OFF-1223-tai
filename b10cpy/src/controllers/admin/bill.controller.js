@@ -2,11 +2,14 @@
 const {
   getItems,
   deleteItem,
-  getItemById,
+  getItemById: getBillById,
   updateItem,
   getStatusCounts,
   addItem,
 } = require("../../services/bill.service");
+const {
+  getItemById:getProductById,
+}=require("../../services/product.admin.service");
 const mainName = 'bill';
 const linkprefix = `/admin/${mainName}/`;
 class billController {
@@ -30,8 +33,13 @@ class billController {
 
   getForm = async (req, res, next) => {
     let { id } = req.params;
-      let data = await getItemById(id);
-      res.render("admin/bill/form", { data });
+      let data = await getBillById(id);
+      const products=[];
+      for(let i=0;i<data.list.length;i++){
+        products.push(await getProductById(data.list[i].id));
+      }
+      console.log(products);
+      res.render("admin/bill/form", { data ,products});
   };
 
  
