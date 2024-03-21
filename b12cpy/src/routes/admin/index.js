@@ -25,6 +25,18 @@ router.use(async(req,res,next)=>{
     res.locals.listsetting=await adminService.getSetting();
     next();
 })
+router.use(async(req,res,next)=>{
+    res.locals.listnews=await adminService.getNews();
+    next();
+})
+router.use(async(req,res,next)=>{
+    res.locals.listbill=await adminService.getBill();
+    next();
+})
+router.use(async(req,res,next)=>{
+    res.locals.listuser=await adminService.getUser();
+    next();
+})
 
 router.use('/' , require('./dashboard'));
 router.use('/news' , require('./news'));
