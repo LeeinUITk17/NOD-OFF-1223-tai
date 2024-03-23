@@ -3,7 +3,8 @@ const { route } = require('../items');
 const router = express.Router();
 const adminService=require('../../services/admin.service');
 router.use((req,res,next)=>{
-    res.locals.layout='admin';
+   // res.locals.layout='admin';
+   req.app.set('layout','admin');
     next();
 })
 

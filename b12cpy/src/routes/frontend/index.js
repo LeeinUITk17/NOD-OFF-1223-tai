@@ -4,7 +4,8 @@ const frontendService = require('../../services/frontend.service');
 const router = express.Router();
 
 router.use((req, res, next) => {
-    res.locals.layout = 'frontend';
+    //res.locals.layout = 'frontend';
+    req.app.set('layout','frontend');
     next();
 });
 

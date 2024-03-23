@@ -1,36 +1,31 @@
 const express = require('express');
 const productService = require('../../services/product.service');
 const router = express.Router();
+const middlewareproduct=require('../../middleware/product');
 
 router.use((req, res, next) => {
-    res.locals.layout = 'product';
+    req.app.set('layout','product');
+    
+    Promise.all([
+        productService.getAllproduct(),
+        productService.getAllcategoryProduct(),
+        productService.getAllsetting(),
+        productService.getAllnews(),
+        productService.getAlladdress(),
+    ]).then(([listproduct,listcategoryproduct,listsetting,listnews,listaddress])=>{
+        res.locals.listproduct=listproduct;
+        res.locals.listcategoryproduct=listcategoryproduct;
+        res.locals.listsetting=listsetting;
+        console.log(listsetting);
+        res.locals.listnews=listnews;
+        res.locals.listaddress=listaddress;
+    }).catch((err)=>{
+        next(err);
+    })
     next();
 });
 
-router.use(async(req,res,next)=>{
-    res.locals.listproduct=await productService.getAllproduct();
-    next();
-})
-
-router.use(async(req,res,next)=>{
-    res.locals.listcategoryproduct=await productService.getAllcategoryProduct();
-    next();
-})
-
-router.use(async(req,res,next)=>{
-    res.locals.listsetting=await productService.getAllsetting();
-    next();
-})
-router.use(async(req,res,next)=>{
-    res.locals.listnews=await productService.getAllnews();
-    next();
-})
- router.use(async(req,res,next)=>{
-    res.locals.listaddress=await productService.getAlladdress();
-    next();
- })
-
-
+router.use('/login',require('./login'));
 router.use('/',require('./home'));
 router.use('/home',require('./home'));
 router.use('/cart',require('./cart'));
@@ -42,5 +37,5 @@ router.use('/about',require('./about'));
 router.use('/blog',require('./blog'));
 router.use('/thanks',require('./thanks'));
 router.use('/viewproduct',require('./viewproduct'));
-router.use('/login',require('./login'));
+
 module.exports=router;
