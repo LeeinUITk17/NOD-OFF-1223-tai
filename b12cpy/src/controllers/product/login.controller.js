@@ -1,6 +1,6 @@
 const{
-    login,
-    register,
+    login : loginService,
+    register: registerService,
 }=require('../../services/login.service');
 const passport = require('passport');
 class UserController {
@@ -22,7 +22,7 @@ class UserController {
     register = async (req, res, next) => {
     try {
         console.table(req.body);
-       const user= await register(req.body);
+       const user= await registerService(req.body);
        req.login(user, (err) => {
         if (err) {
             req.flash('error', err.message);
@@ -47,12 +47,21 @@ login = async (req, res, next) => {
                 req.flash('error', 'Invalid username or password');
                 return res.redirect('/shop/login');
             }
-            req.login(user, (err) => {
+            req.login(user, async (err) => {
                 if (err) {
                     req.flash('error', err.message);
                     return res.render('product/shop/login');
                 }
-                return res.redirect('/shop');
+                try {
+                    const token = await loginService(req, req.body);
+                    console.log(req.body);
+                    res.cookie('jwt', token, { httpOnly: true });
+                    console.log(token);
+                    return res.redirect('/shop');
+                } catch (error) {
+                    req.flash('error', error.message);
+                    return res.render('product/shop/login');
+                }
             });
         })(req, res, next);
     } catch (err) {
