@@ -12,7 +12,6 @@ module.exports=
             res.locals.listproduct=listproduct;
             res.locals.listcategoryproduct=listcategoryproduct;
             res.locals.listsetting=listsetting;
-            console.log(listsetting);
             res.locals.listnews=listnews;
             res.locals.listaddress=listaddress;
             next();

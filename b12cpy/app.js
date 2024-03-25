@@ -27,7 +27,7 @@ app.use(bodyParser.json());
 
 app.use(session({
   secret: "cnttvietnhatk17",
-  resave: true,
+  resave: false,
   saveUninitialized: true,
 }));
 

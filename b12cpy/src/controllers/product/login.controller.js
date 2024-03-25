@@ -22,9 +22,14 @@ class UserController {
     register = async (req, res, next) => {
     try {
         console.table(req.body);
-        await register(req.body);
-        await login(req,req.body);
-        return res.redirect('/shop');
+       const user= await register(req.body);
+       req.login(user, (err) => {
+        if (err) {
+            req.flash('error', err.message);
+            return res.render('product/shop/login');
+        }
+        return res.redirect('/shop'); 
+    });
     } catch (err) {
         req.flash('error', err.message);
         return res.render('product/shop/login/form');
@@ -33,12 +38,23 @@ class UserController {
 
 login = async (req, res, next) => {
     try {
-      await login(req,req.body);
-      console.log(req.body);
-      await passport.authenticate('local', {
-         successRedirect:'/shop',
-            failureRedirect:'/shop/login',
-      })(req, res, next);
+        passport.authenticate('local', (err, user) => {
+            if (err) {
+                req.flash('error', err.message);
+                return res.render('product/shop/login');
+            }
+            if (!user) {
+                req.flash('error', 'Invalid username or password');
+                return res.redirect('/shop/login');
+            }
+            req.login(user, (err) => {
+                if (err) {
+                    req.flash('error', err.message);
+                    return res.render('product/shop/login');
+                }
+                return res.redirect('/shop');
+            });
+        })(req, res, next);
     } catch (err) {
         req.flash('error', err.message);
         return res.render('product/shop/login');
