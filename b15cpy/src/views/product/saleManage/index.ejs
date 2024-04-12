@@ -1,0 +1,42 @@
+<div class="untree_co-section before-footer-section">
+    <div class="container">
+      <div class="row mb-5">
+        <form class="col-md-12" method="post">
+          <div class="site-blocks-table">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th class="product-thumbnail">Index</th>
+                  <th class="product-name">Category</th>
+                  <th class="product-price">Name</th>
+                  <th class="product-quantity">Image</th>
+                  <th class="product-total">Price</th>
+                  <th class="product-remove">CreatedAt</th>
+                  <th class="product-total">Status</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% data.forEach((item, index) => { %>
+                <tr>
+                        <td><%= index + 1 %></td>
+                        <td><%= item.category %></td>
+                        <td><%= item.name %></td>
+                        <td><img src="/<%= item.avatar%>" alt="image product" style="width: 40px; height: auto; border-radius: 50%;"></td>
+                        <td><%= item.price %></td>
+                        <td><%= item.createdAt.toISOString().split('T')[0] %></td>
+                        <td><%= item.status %></td>
+                        <td><a href="/shop/account/upload/<%= item._id%>"><button link type="button" class="btn btn-secondary me-2" >View Details</button></a></td>
+                       <td> <a class="btn btn-danger btn-delete btn-sm" href="javascript:handleDelete('/shop/account/delete/<%= item.id %>')">
+                        <i class="fas fa-trash"> </i>
+                        Delete
+                      </a></td>
+                </tr>
+                <% }); %>
+              </tbody>
+            </table>
+          </div>
+        </form>
+      </div>
+     </div>
+</div>
