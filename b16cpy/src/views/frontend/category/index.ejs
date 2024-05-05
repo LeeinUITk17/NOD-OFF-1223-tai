@@ -1,0 +1,58 @@
+<div class="row">
+        
+    <nav class="pagination">
+        <a href="/home" class="page-numbers">ALL</a>
+        <a href="/category/pirates" class="page-numbers <%= slug === 'pirates' ? 'current' : '' %>">Pirates</a>
+        <a href="/category/member" class="page-numbers <%= slug === 'member' ? 'current' : '' %>">Member</a>
+        <a href="/category/marines" class="page-numbers <%= slug === 'marines' ? 'current' : '' %>">Marines</a>
+    </nav>
+
+</div>
+<section id="bricks">
+    
+    <div class="row masonry">
+
+        <!-- brick-wrapper -->
+      <div class="bricks-wrapper">
+
+          <div class="grid-sizer"></div>
+
+
+        <% listnews.forEach((item) => { %>
+            <% if(item.category === slug) { %>
+                <article class="brick entry format-standard animate-this">
+
+                    <div class="entry-thumb">
+                        <a href="/news/<%= item._id %>" class="thumb-link">
+                            <img src="/<%= item.avatar %>" alt="building">             
+                        </a>
+                    </div>
+
+                    <div class="entry-text">
+                        <div class="entry-header">
+
+                            <div class="entry-meta">
+                                <span class="cat-links">
+                                    <a href="#"><%= item.name %></a>               				
+                                </span>			
+                            </div>
+
+                            <h1 class="entry-title"><a href="/news/<%= item._id %>"><%= item.description %></a></h1>
+
+                        </div>
+                    </div>
+
+                </article> <!-- end article -->
+            <% } %>
+        <% }); %>
+        
+         <!-- format audio here -->
+        
+
+      </div> <!-- end brick-wrapper --> 
+
+    </div> <!-- end row -->
+
+ 
+
+</section> <!-- end bricks -->

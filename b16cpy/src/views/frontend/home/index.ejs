@@ -1,0 +1,99 @@
+<div class="row">
+        
+    <nav class="pagination">
+        <a href="/home" class="page-numbers current">ALL</a>
+        <a href="/category/pirates" class="page-numbers">Pirates</a>
+        <a href="/category/member" class="page-numbers">Member</a>
+       <a href="/category/marines" class="page-numbers">Marines</a>
+   </nav>
+
+</div>
+<section id="bricks">
+
+    <div class="row masonry">
+
+        <!-- brick-wrapper -->
+      <div class="bricks-wrapper">
+
+          <div class="grid-sizer">
+
+
+            <div class="brick entry featured-grid animate-this">
+                <div class="entry-content">
+                    <div id="featured-post-slider" class="flexslider">
+                          <ul class="slides">
+  
+  
+  
+                              <% listnews.forEach((item) => { %>
+                                  <% if (item.special) { %>
+                                      <li>
+                                          <div class="featured-post-slide">
+                                              <div class="post-background" style="background-image:url('/<%= item.avatar %>');"></div>
+                                              <div class="overlay"></div>
+                                              <div class="post-content">
+                                                  <ul class="entry-meta">
+                                                      <li>September 06, 2024</li>
+                                                      <li><a href="#">L.ThTai</a></li>
+                                                  </ul>
+                                                  <h1 class="slide-title"><a href="/news/<%= item._id%>" title=""><%= item.name %></a></h1>
+                                              </div>
+                                          </div>
+                                      </li> <!-- /slide -->
+                                  <% }  %>
+                                   
+                              <% }); %>
+                          
+                          </ul> <!-- end slides -->
+                      </div> <!-- end featured-post-slider -->        			
+                </div> <!-- end entry content -->         		
+            </div>
+  
+            <%
+            function shuffleArray(array) {
+              for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+              }
+              return array;
+            }
+          
+            const shuffledNews = shuffleArray(listnews.slice(0, 10));
+            const nonrenderedCategories = new Set();
+            shuffledNews.forEach((item) => {
+             %>
+          
+            <% if (!item.special) { %>
+                      
+                                  <article class="brick entry format-standard animate-this">
+                      
+                          <div class="entry-thumb">
+                             <a href="/news/<%= item._id%>" class="thumb-link">
+                                 <img src="/<%= item.avatar%>" alt="building">             
+                             </a>
+                          </div>
+                      
+                          <div class="entry-text">
+                              <div class="entry-header">
+                      
+                                  <div class="entry-meta">
+                                      <span class="cat-links">
+                                          <a href="#"><%= item.name%></a>               				
+                                      </span>			
+                                  </div>
+                      
+                                  <h1 class="entry-title"><a href="/news/<%= item._id%>"><%= item.description%></a></h1>
+                                  
+                              </div>
+                          </div>
+                      
+                      
+                           </article> 
+                      <% }  %>
+          <%  }) ; %>
+          </div>       
+
+    </div> 
+    </div>
+
+</section>
